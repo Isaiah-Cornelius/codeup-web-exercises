@@ -26,12 +26,6 @@ let NoConcflict = confirm("Do you have time in your schedule to attend this clas
 let CanAttendClass = ClassNotFull && NoConcflict;
 alert("It is " + CanAttendClass + " that you can attend this class.");
 
-
-console.log("Question 3.4")
-var ItemCount = 1, OfferExpired = true, PremiumMember = true
-var OfferApplied = (PremiumMember && !OfferExpired) || (ItemCount >= 2 && !OfferExpired)
-console.log(OfferApplied)
-
 let OfferActive = confirm("Is the offer active? Select 'OK' if the offer is active. Select 'Cancel' if the offer is expired.");
 let PremiumMember = confirm("Are you a Premium Member? Select 'OK' if you are a Premium Member. Select 'Cancel' if you are not a Premium Member.");
 let ItemCount = confirm("Select 'OK' if you are purchasing two or more items, otherwise, select 'Cancel'.");
