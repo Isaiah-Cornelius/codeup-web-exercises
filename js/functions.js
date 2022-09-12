@@ -1,7 +1,5 @@
+"use strict";
 (function () {
-    "use strict";
-
-
     /*
      * TODO:
      * Collect and display a user's first and last name using a function.
