@@ -103,65 +103,65 @@
 //
 //     /* ########################################################################## */
 //
-//     /**
-//      * TODO:
-//      * Suppose there's a promotion in Walmart, each customer is given a randomly
-//      * generated "lucky number" between 0 and 5. If your lucky number is 0 you have
-//      * no discount, if your lucky number is 1 you'll get a 10% discount, if it's 2,
-//      * the discount is 25%, if it's 3, 35%, if it's 4, 50%, and if it's 5 you'll get
-//      * everything for free!.
-//      *
-//      * Write a function named `calculateTotal` which accepts a lucky number and total
-//      * amount, and returns the discounted price.
-//      *
-//      * Example:
-//      * calculateTotal(0, 100) // returns 100
-//      * calculateTotal(4, 100) // returns 50
-//      * calculateTotal(5, 100) // returns 0
-//      *
-//      * Test your function by passing it various values and checking for the expected
-//      * return value.
-//      */
-// function calculateTool(luckyNumber, totalAmount){
-//     if (luckyNumber === 0){
-//         return totalAmount;
-//     } else if (luckyNumber === 1){
-//         return totalAmount - (totalAmount * .1);
-//     } else if (luckyNumber === 2){
-//         return totalAmount - (totalAmount * .25);
-//     } else if (luckyNumber === 3){
-//         return totalAmount - (totalAmount * .35);
-//     } else if (luckyNumber === 4){
-//         return totalAmount - (totalAmount * .5);
-//     } else if (luckyNumber === 5){
-//         return 0
-//     } else {
-//         return "Something went wrong with your lucky number.";
-//     }
-// }
-//
-//     console.log(calculateTool(0,100))
-//     console.log(calculateTool(1,100))
-//     console.log(calculateTool(2,100))
-//     console.log(calculateTool(3,100))
-//     console.log(calculateTool(4,100))
-//     console.log(calculateTool(5,100))
-//     console.log(calculateTool(6,100))
-//
-//     /**
-//      * TODO:
-//      * Uncomment the line below to generate a random number between 0 and 5.
-//      * (In this line of code, 0 is inclusive, and 6 is exclusive)
-//      * Prompt the user for their total bill, then use your `calculateTotal` function
-//      * and alerts to display to the user what their lucky number was, what their
-//      * price before the discount was, and what their price after the discount is.
-//      */
-//     //Generate a random number between 0 and 6
-//     var luckyNumber = Math.floor(Math.random() * 6);
-//
-//     let totalBill = parseFloat(prompt("Please enter your total bill amount: ")).toFixed(2);
-//
-//     alert("Your lucky number is " + luckyNumber + "." + "\n" + "Your price before discount is $" + totalBill + "." + "\n" + "Your price after discount is $" + parseFloat(calculateTool(luckyNumber, totalBill)).toFixed(2) + ".");
+    /**
+     * TODO:
+     * Suppose there's a promotion in Walmart, each customer is given a randomly
+     * generated "lucky number" between 0 and 5. If your lucky number is 0 you have
+     * no discount, if your lucky number is 1 you'll get a 10% discount, if it's 2,
+     * the discount is 25%, if it's 3, 35%, if it's 4, 50%, and if it's 5 you'll get
+     * everything for free!.
+     *
+     * Write a function named `calculateTotal` which accepts a lucky number and total
+     * amount, and returns the discounted price.
+     *
+     * Example:
+     * calculateTotal(0, 100) // returns 100
+     * calculateTotal(4, 100) // returns 50
+     * calculateTotal(5, 100) // returns 0
+     *
+     * Test your function by passing it various values and checking for the expected
+     * return value.
+     */
+function calculateTool(luckyNumber, totalAmount){
+    if (luckyNumber === 0){
+        return totalAmount;
+    } else if (luckyNumber === 1){
+        return totalAmount - (totalAmount * .1);
+    } else if (luckyNumber === 2){
+        return totalAmount - (totalAmount * .25);
+    } else if (luckyNumber === 3){
+        return totalAmount - (totalAmount * .35);
+    } else if (luckyNumber === 4){
+        return totalAmount - (totalAmount * .5);
+    } else if (luckyNumber === 5){
+        return 0
+    } else {
+        return "Something went wrong with your lucky number.";
+    }
+}
+
+    console.log(calculateTool(0,100))
+    console.log(calculateTool(1,100))
+    console.log(calculateTool(2,100))
+    console.log(calculateTool(3,100))
+    console.log(calculateTool(4,100))
+    console.log(calculateTool(5,100))
+    console.log(calculateTool(6,100))
+
+    /**
+     * TODO:
+     * Uncomment the line below to generate a random number between 0 and 5.
+     * (In this line of code, 0 is inclusive, and 6 is exclusive)
+     * Prompt the user for their total bill, then use your `calculateTotal` function
+     * and alerts to display to the user what their lucky number was, what their
+     * price before the discount was, and what their price after the discount is.
+     */
+    //Generate a random number between 0 and 6
+    var luckyNumber = Math.floor(Math.random() * 6);
+
+    let totalBill = parseFloat(prompt("Please enter your total bill amount: ")).toFixed(2);
+
+    alert("Your lucky number is " + luckyNumber + "." + "\n" + "Your price before discount is $" + totalBill + "." + "\n" + "Your price after discount is $" + parseFloat(calculateTool(luckyNumber, totalBill)).toFixed(2) + ".");
 
     /**
      * TODO:
