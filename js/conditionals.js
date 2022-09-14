@@ -58,51 +58,51 @@
 // console.log(analyzeColor(randomColor));
 
 
-//     /**
-//      * TODO:
-//      * Comment out the code above, and refactor your function to use a switch-case statement
-//      */
-// function analyzeColor(){
-//     switch (userColor){
-//             case "red":
-//                 alert("roses are red");
-//                 break;
-//             case "orange":
-//                 alert("oranges are orange");
-//                 break;
-//             case "yellow":
-//                 alert("sunflowers are yellow");
-//                 break;
-//             case "green":
-//                 alert("grass is green");
-//                 break;
-//             case "blue":
-//                 alert("flax is blue");
-//                 break;
-//             case "indigo":
-//                 alert("indigo is an odd color");
-//                 break;
-//             case "violet":
-//                 alert("violets are violet");
-//                 break;
-//             default:
-//                 alert("I don't know about the color : " + userColor + ".");
-//                 break;
-//         }
-//     }
-//     /**
-//      * TODO:
-//      * Prompt the user for a color when the page loads, and pass the input from the
-//      * user to your `analyzeColor` function. Alert the return value from your
-//      * function to show it to the user.
-//      */
-//
-//     let userColor = prompt("Please provide a color: ")
-//     analyzeColor(userColor);
-//
-//
-//     /* ########################################################################## */
-//
+    /**
+     * TODO:
+     * Comment out the code above, and refactor your function to use a switch-case statement
+     */
+function analyzeColor(){
+    switch (userColor){
+            case "red":
+                alert("roses are red");
+                break;
+            case "orange":
+                alert("oranges are orange");
+                break;
+            case "yellow":
+                alert("sunflowers are yellow");
+                break;
+            case "green":
+                alert("grass is green");
+                break;
+            case "blue":
+                alert("flax is blue");
+                break;
+            case "indigo":
+                alert("indigo is an odd color");
+                break;
+            case "violet":
+                alert("violets are violet");
+                break;
+            default:
+                alert("I don't know about the color : " + userColor + ".");
+                break;
+        }
+    }
+    /**
+     * TODO:
+     * Prompt the user for a color when the page loads, and pass the input from the
+     * user to your `analyzeColor` function. Alert the return value from your
+     * function to show it to the user.
+     */
+
+    let userColor = prompt("Please provide a color: ")
+    analyzeColor(userColor);
+
+
+    /* ########################################################################## */
+
     /**
      * TODO:
      * Suppose there's a promotion in Walmart, each customer is given a randomly
