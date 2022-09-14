@@ -30,32 +30,32 @@
     var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
     var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-    // /**
-    //  * TODO:
-    //  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
-    //  * You should see a different message every time you refresh the page
-    //  */
-    // function analyzeColor(color) {
-    //     if (color == 'red') {
-    //         alert("Roses are red")
-    //     } else if (color == 'orange') {
-    //         alert("Oranges are orange")
-    //     } else if (color == 'yellow') {
-    //         alert("Sunflowers are yellow")
-    //     } else if (color == 'green') {
-    //         alert("Grass is green")
-    //     } else if (color == 'blue') {
-    //         alert("Flax is blue")
-    //     } else if (color == 'indigo') {
-    //         alert("Indigo is an odd color")
-    //     } else if (color == 'violet') {
-    //         alert("Violets are violet")
-    //     } else {
-    //         alert("I don't know about the color : " + color + ".")
-    //     }
-    // }
+    /**
+     * TODO:
+     * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
+     * You should see a different message every time you refresh the page
+     */
+    function analyzeColor(color) {
+        if (color == 'red') {
+            alert("Roses are red")
+        } else if (color == 'orange') {
+            alert("Oranges are orange")
+        } else if (color == 'yellow') {
+            alert("Sunflowers are yellow")
+        } else if (color == 'green') {
+            alert("Grass is green")
+        } else if (color == 'blue') {
+            alert("Flax is blue")
+        } else if (color == 'indigo') {
+            alert("Indigo is an odd color")
+        } else if (color == 'violet') {
+            alert("Violets are violet")
+        } else {
+            alert("I don't know about the color : " + color + ".")
+        }
+    }
 
-// console.log(analyzeColor(randomColor));
+console.log(analyzeColor(randomColor));
 
 
     /**
