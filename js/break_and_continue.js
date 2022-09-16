@@ -22,22 +22,22 @@
 //     }
 //     while (userNumber % 2 === 0 || userNumber <= 1 || userNumber >= 50);
 // }
-let userNumber = 0;
-do {
-    userNumber = Number(prompt("Please enter your least favorite odd number between 1 and 50"));
-    if(userNumber % 2 === 1 && userNumber > 1 && userNumber < 50){
-        break;
-    }
-} while (true);
-console.log("Number to skip is: " + userNumber);
-
-for(let i = 0; i <50; i++){
-    if(i % 2 === 0){
-        continue;
-    }
-    if(i === userNumber){
-        console.log("Yikes! Skipping number: " + userNumber)
-        continue;
-    }
-    console.log("Here is an odd number: " + i);
-}
+// let userNumber = 0;
+// do {
+//     userNumber = Number(prompt("Please enter your least favorite odd number between 1 and 50"));
+//     if(userNumber % 2 === 1 && userNumber > 1 && userNumber < 50){
+//         break;
+//     }
+// } while (true);
+// console.log("Number to skip is: " + userNumber);
+//
+// for(let i = 0; i <50; i++){
+//     if(i % 2 === 0){
+//         continue;
+//     }
+//     if(i === userNumber){
+//         console.log("Yikes! Skipping number: " + userNumber)
+//         continue;
+//     }
+//     console.log("Here is an odd number: " + i);
+// }
