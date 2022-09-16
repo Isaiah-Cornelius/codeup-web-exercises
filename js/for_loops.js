@@ -28,17 +28,20 @@ function tenRandomNumbersOddOrEven(){
     }
 }
 
-//For Loop Question #4
-let string = "";
-for(let i=1; i < 10; i++){
-    for(let x=1; x<=i; x++){
-        string+=i;
-    }
-    string+="\n";
+// //For Loop Question #4
+// let string = "";
+// for(let i=1; i < 10; i++){
+//     for(let x=1; x<=i; x++){
+//         string+=i;
+//     }
+//     string+="\n";
+// }
+// console.log(string);
+
+//For Loop Question #5
+for(let i = 100; i>=5; i-=5){
+    console.log(i);
 }
-console.log(string);
-
-
 
 
 
