@@ -19,7 +19,7 @@
                 return Math.floor(Math.random() * (max - min) + min);
             }
 
-            let randomNumber = getRandomInt(20, 99);
+            let randomNumber = getRandomInt(21, 100);
             if (randomNumber % 2 === 0) {
                 console.log(randomNumber + " is even.");
             } else {
