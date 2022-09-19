@@ -1,36 +1,44 @@
-(function(){
-    "use strict";
-
+"use strict";
+(function () {
 
     /**
      * TODO:
      * Create an array of 4 people's names and store it in a variable called
      * 'names'.
      */
-
+    let names = ['Albert', 'Betty', 'Charlie', 'Delbert'];
     /**
      * TODO:
      * Create a log statement that will log the number of elements in the names
      * array.
      */
-
+    console.log("The number of elements in the names array is : " + names.length);
     /**
      * TODO:
      * Create log statements that will print each of the names individually by
      * accessing each element's index.
      */
+    console.log("The name at index " + 0 + " is : " + names[0]);
+    console.log("The name at index " + 1 + " is : " + names[1]);
+    console.log("The name at index " + 2 + " is : " + names[2]);
+    console.log("The name at index " + 3 + " is : " + names[3]);
+    console.log("The name at index " + 4 + " is : " + names[4]);
 
     /**
      * TODO:
      * Write some code that uses a for loop to log every item in the names
      * array.
      */
-
+    for (let i = 0; i < names.length; i++) {
+        console.log("The name at index " + i + " is : " + names[i]);
+    }
     /**
      * TODO:
      * Refactor your above code to use a `forEach` loop
      */
-
+    names.forEach(function (element, index, name) {
+        console.log("The name at index " + index + " is : " + element);
+    })
     /**
      * TODO:
      * Create the following three functions, each will accept an array and
@@ -44,5 +52,22 @@
      *  > second([1, 2, 3, 4, 5]) // returns 2
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
+    let testArray = [1, 2, 3, 4, 5];
+
+    function first(x) {
+        console.log("The first element of the array is : " + x[0]);
+        return x[0];
+    }
+    first(testArray);
+    function second(x) {
+        console.log("The second element of the array is : " + x[1]);
+        return x[1];
+    }
+    second(testArray);
+    function last(x) {
+        console.log("The last element of the array is : " + x[x.length-1]);
+        return x[x.length-1];
+    }
+    last(testArray);
 
 })();
