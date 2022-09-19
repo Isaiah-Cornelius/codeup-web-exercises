@@ -53,7 +53,7 @@
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
     let testArray = [1, 2, 3, 4, 5];
-
+    console.log("testArray = " + testArray);
     function first(x) {
         console.log("The first element of the array is : " + x[0]);
         return x[0];
