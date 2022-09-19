@@ -5,11 +5,11 @@
 
     while (x <= 65536) {
         console.log(x);
-        x = x * 2;
+        x *= 2;
     }
 
     let conesToSell = Math.floor(Math.random() * 50) + 50;
-    console.log(conesToSell);
+    console.log(`Number of cones to sell : ${conesToSell}`);
     do {
         let conesSold = Math.floor(Math.random() * 5) + 1;
 
