@@ -20,7 +20,7 @@
      */
     let planetsStringWithBreaks = "";
     for (let i = 0; i < planetsArray.length; i++){
-        planetsStringWithBreaks += planetsArray[i] + ' <br> ';
+        planetsStringWithBreaks += `${planetsArray[i]} <br> `;
     }
     console.log(planetsStringWithBreaks);
 
@@ -36,7 +36,7 @@
         if (i === 0){
             planetsStringUnorderedList += '<ul> ';
         }
-        planetsStringUnorderedList += ' <li> ' + planetsArray[i] + ' </li> ';
+        planetsStringUnorderedList += ` <li>  ${planetsArray[i]}  </li> `;
         if (i === planetsArray.length -1){
             planetsStringUnorderedList += ' </ul>';
         }
