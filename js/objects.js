@@ -55,7 +55,7 @@
     //     let discount = .12;
     //     console.log("Hello " + shopper.name + "! Thank you for shopping at HEB! Your current amount is $" + shopper.amount.toFixed(2) + ".")
     //     if (shopper.amount <= 200){
-    //         console.log("To recieve your " + (discount * 100) + "% discount, you must spend an additional $" + (200.01 - shopper.amount).toFixed(2) + "." );
+    //         console.log("To receive your " + (discount * 100) + "% discount, you must spend an additional $" + (200.01 - shopper.amount).toFixed(2) + "." );
     //     } else {
     //         shopper.amount -= shopper.amount * discount;
     //         console.log("Your " + (discount * 100) + "% discount has been applied!")
@@ -75,44 +75,44 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
-    let books = [
-        {
-            title : "Dune",
-            author : {
-                firstName : "Frank",
-                lastName : "Herbert"
-            }
-        },
-        {
-            title: "Hyperion",
-            author: {
-                firstName: "Dan",
-                lastName: "Simmons"
-            }
-        },
-        {
-            title: "Oliver Twist",
-            author: {
-                firstName: "Charles",
-                lastName: "Dickens"
-            }
-        },
-        {
-            title: "The Hobbit",
-            author: {
-                firstName: "J. R. R.",
-                lastName: "Tolkien"
-            }
-        },
-        {
-            title: "The Alchemist",
-            author: {
-                firstName: "Paulo",
-                lastName: "Coelho"
-            }
-        }
-    ]
-    console.log(books);
+    // let books = [
+    //     {
+    //         title : "Dune",
+    //         author : {
+    //             firstName : "Frank",
+    //             lastName : "Herbert"
+    //         }
+    //     },
+    //     {
+    //         title: "Hyperion",
+    //         author: {
+    //             firstName: "Dan",
+    //             lastName: "Simmons"
+    //         }
+    //     },
+    //     {
+    //         title: "Oliver Twist",
+    //         author: {
+    //             firstName: "Charles",
+    //             lastName: "Dickens"
+    //         }
+    //     },
+    //     {
+    //         title: "The Hobbit",
+    //         author: {
+    //             firstName: "J. R. R.",
+    //             lastName: "Tolkien"
+    //         }
+    //     },
+    //     {
+    //         title: "The Alchemist",
+    //         author: {
+    //             firstName: "Paulo",
+    //             lastName: "Coelho"
+    //         }
+    //     }
+    // ]
+    // console.log(books);
 
     /**
      * TODO:
@@ -138,22 +138,49 @@
      *      ---
      *      ...
      */
-    books.forEach(function (book, index){
-        console.log("Book # " + (index + 1));
-        console.log("Title: " + book.title);
-        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
-        console.log("---");
-
-    })
+    // function showBookInfo() {
+    //     books.forEach(function (book, index) {
+    //         console.log("Book # " + (index + 1));
+    //         console.log("Title: " + book.title);
+    //         console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+    //         console.log("---");
+    //     })
+    // }
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
      *   name and returns a book object with the properties described
      *   previously. Refactor your code that creates the books array to instead
      *   use your function.
-     * - Create a function named `showBookInfo` that accepts a book object and
+     */
+    let books = []
+    function createBook(bookTitle, authorFirstName, authorLastName) {
+        let newBook = {
+            title: bookTitle,
+            author: {
+                firstName: authorFirstName,
+                lastName: authorLastName
+            }
+        }
+        books.push(newBook);
+    }
+    createBook("Dune", "Frank", "Herbert");
+    createBook("Hyperion", "Dan", "Simmons");
+    createBook("Oliver Twist", "Charles", "Dickens");
+    createBook("The Hobbit", "J. R. R.", "Tolkien");
+    createBook("The Alchemist", "Paulo", "Coelho");
+
+    /** - Create a function named `showBookInfo` that accepts a book object and
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
-
+    function showBookInfo(){
+        books.forEach(function (book, index) {
+            console.log("Book # " + (index + 1));
+            console.log("Title: " + book.title);
+            console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+            console.log("---");
+        })
+    }
+    showBookInfo();
 })();
