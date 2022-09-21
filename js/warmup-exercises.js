@@ -39,6 +39,4 @@ function shuffleArray(x){
     if (Array.isArray(x) !== true){
         return "Incorrect input type, please enter an array"
     }
-
-
 }
