@@ -11,12 +11,12 @@
     //  *  > console.log(person.firstName) // "Rick"
     //  *  > console.log(person.lastName) // "Sanchez"
     //  */
-    // let person = {
-    //     firstName : 'Isaiah',
-    //     lastName : 'Cornelius'
-    // }
-    // console.log(person.firstName);
-    // console.log(person.lastName);
+    let person = {
+        firstName : 'Isaiah',
+        lastName : 'Cornelius'
+    }
+    console.log(person.firstName);
+    console.log(person.lastName);
     //
     // /**
     //  * TODO:
@@ -27,10 +27,10 @@
     //  * Example
     //  * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
     //  */
-    // person.sayHello = function (){
-    //     console.log("Hello from " + person.firstName + " " + person.lastName + "!");
-    // }
-    // console.log(person.sayHello());
+    person.sayHello = function (){
+        console.log("Hello from " + person.firstName + " " + person.lastName + "!");
+    }
+    console.log(person.sayHello());
     // /** TODO:
     //  * HEB has an offer for the shoppers that buy products amounting to
     //  * more than $200. If a shopper spends more than $200, they get a 12%
@@ -45,23 +45,23 @@
     //  * and console.log the relevant messages for each person
     //  */
     //
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
-    //
-    // shoppers.forEach(function (shopper){
-    //     let discount = .12;
-    //     console.log("Hello " + shopper.name + "! Thank you for shopping at HEB! Your current amount is $" + shopper.amount.toFixed(2) + ".")
-    //     if (shopper.amount <= 200){
-    //         console.log("To receive your " + (discount * 100) + "% discount, you must spend an additional $" + (200.01 - shopper.amount).toFixed(2) + "." );
-    //     } else {
-    //         shopper.amount -= shopper.amount * discount;
-    //         console.log("Your " + (discount * 100) + "% discount has been applied!")
-    //     }
-    //     console.log("Your total amount is $" + shopper.amount.toFixed(2) + "!");
-    // });
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+    shoppers.forEach(function (shopper){
+        let discount = .12;
+        console.log("Hello " + shopper.name + "! Thank you for shopping at HEB! Your current amount is $" + shopper.amount.toFixed(2) + ".")
+        if (shopper.amount <= 200){
+            console.log("To receive your " + (discount * 100) + "% discount, you must spend an additional $" + (200.01 - shopper.amount).toFixed(2) + "." );
+        } else {
+            shopper.amount -= shopper.amount * discount;
+            console.log("Your " + (discount * 100) + "% discount has been applied!")
+        }
+        console.log("Your total amount is $" + shopper.amount.toFixed(2) + "!");
+    });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
