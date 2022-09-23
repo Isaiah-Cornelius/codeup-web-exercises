@@ -1,4 +1,20 @@
 "use strict";
+//// 9/23/22
+/* Randomize array in-place using Durstenfeld shuffle algorithm */
+// function shuffleArray(array) {
+//     for (var i = array.length - 1; i > 0; i--) {
+//         console.log("var i is :" + i);
+//         var j = Math.floor(Math.random() * (array.length));
+//         console.log("var j = Math.floor(Math.random() * (i + 1))---var j is :" + j);
+//         var temp = array[i];
+//         console.log("var temp = array[i]---var temp is :" + temp);
+//         array[i] = array[j];
+//         console.log("array[i] = array[j]---var[i] is :" + array[i]);
+//         array[j] = temp;
+//         console.log("array[j] = temp---array[j] is :" + array[j]);
+//         console.log("-----");
+//     } return array;
+// }
 //// 9/22/22
 //// Warmup #1: Create a function to sort the array from lowest to highest. Make sure the function accepts an array and returns an array.
 // function sortArray(x){
