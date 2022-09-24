@@ -1,4 +1,42 @@
 "use strict";
+
+//// 9 24/22
+/**
+ * Randomize an array in-place using an algorithm (Modified Durstenfeld Algoritm)
+ */
+function shuffleArray(array){
+    let noChangeIndex = [];
+    let originalArray = array;
+    console.log(originalArray);
+    for (let i = array.length -1, a = 0; i > -1; i--, a++ ){
+        console.log("i = :" + i);
+        console.log("a = :" + a);
+        let j = Math.floor(Math.random() * (array.length));
+        console.log("j = :" + j);
+        let b = Math.floor(Math.random() * (array.length));
+        console.log("b = :" + b);
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+        let temp2 = array[a];
+        array[a] = array[b];
+        array[b] = temp2;
+        console.log("-----")
+        if (i === j){
+                    noChangeIndex.push("j is i for [" + i + "]");
+        }
+        if (a === b){
+            noChangeIndex.push("a is b for [" + a + "]");
+        }
+    }
+    console.log("No change on index : " + noChangeIndex);
+    console.log(((((array.length * 2) - noChangeIndex.length) / (array.length * 2)) * 100).toFixed(2)+ "% actual shuffle");
+    console.log(noChangeIndex.length + " Matching shuffles");
+    console.log(((array.length * 2) - noChangeIndex.length) + " properly shuffled index actions out of " + (array.length *2) + " trys.");
+    return array;
+}
+let array = [1,2,3,4,5,6];
+
 //// 9/23/22
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 // function shuffleArray(array) {
