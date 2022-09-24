@@ -5,23 +5,25 @@
  * Randomize an array in-place using an algorithm (Modified Durstenfeld Algoritm)
  */
 function shuffleArray(array){
+    //create a blank array to push to when the loop index and the random index are the same; no shuffle
     let noChangeIndex = [];
-    let originalArray = array;
-    console.log(originalArray);
+    console.log("Original array is : " + array);
+    //this for loop will shuffle the entire array twice per index; once from the back forward and once from the front backwards
     for (let i = array.length -1, a = 0; i > -1; i--, a++ ){
-        console.log("i = :" + i);
-        console.log("a = :" + a);
+        // console.log("i = :" + i);
         let j = Math.floor(Math.random() * (array.length));
-        console.log("j = :" + j);
+        // console.log("j = :" + j);
+        // console.log("a = :" + a);
         let b = Math.floor(Math.random() * (array.length));
-        console.log("b = :" + b);
+        // console.log("b = :" + b);
         let temp = array[i];
         array[i] = array[j];
         array[j] = temp;
         let temp2 = array[a];
         array[a] = array[b];
         array[b] = temp2;
-        console.log("-----")
+        // console.log("-----")
+        //the following two conditional statements push to the noChangeIndex array when a shuffle fails; meaning the used index and the random index are the same and nothing actually changed within the array
         if (i === j){
                     noChangeIndex.push("j is i for [" + i + "]");
         }
