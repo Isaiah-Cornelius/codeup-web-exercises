@@ -4,48 +4,16 @@
  * ARRAYS
  */
 
-//--------------------------------------------------------------------------------
-//     - Define a function named `removeAll(array, value)` that takes in two arguments.
-//     The first argument should be an array and the second argument should be a
-// value you wish to remove
-//
-//define a function with 2 parameters
-//first parameter should be an array
-//second parameter should be the element to remove
-//return the original array without any of the second parameter values
-//
-// Given:
-let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
-//
-//- `removeAll(bugs, "ant")`
-// should return `["mosquito", "scorpion", mosquito", "typo", "reference error", "type error"]`
-//
-//- `removeAll(bugs, "mosquito")`
-// should return `["ant", "scorpion", "ant", "ant", "typo", "reference error", "type error"]`
-//
-//- `removeAll(bugs, "roach")`
-// should return the original array b/c "roach" has no occurrences.
+//Make a function called randomIntBetween(min, max) that returns a random number between the min and the max.
 
-function removeAll(x,y){
- if (Array.isArray(x)){
-  for (let i = x.length -1; i > -1; i--){
-   if (x[i] === y){
-    x.splice(i,1);
-   }
-  }
-  return x;
- }
+function randomIntBetween(min,max){
+ // Explain (max-min-1); the original max - min makes a range where the inclusive min will sometimes be selected. In this case, we want a number greater than min so by restricting this piece, the range is correct but the min still might be selected, the max -1 is exclusive at this moment.
+ //Explain + min + 1; now that the range is correct, adding min shifts it near the correct position, by adding one it makes the lowest inclusive value the next greatest integer than min, meaning the random number will now exclude the min value, generating a number between min and max, or min < x < max.
+ return Math.floor(Math.random() * (max - min - 1) + min + 1);
 }
 
-// console.log(removeAll(bugs, "ant"));
-//console.log(removeAll(bugs, "mosquito"));
-//console.log(removeAll(bugs, "roach"));
-
-//--------------------------------------------------------------------------------
 
  /**
- *     - Make a function called randomIntBetween(min, max) that returns a random number
- * between the min and the max.
  * - Make a function called `coinFlip()` that returns either 0 or 1, randomly
  * - Make a function called `twoDice()` that returns the sum of rolling two six
  * sided dice.
@@ -707,6 +675,44 @@ function removeAll(x,y){
 // console.log(allIndexesOf(fruits, "apple"));
 // console.log(allIndexesOf(fruits, "guava"));
 // console.log(allIndexesOf(fruits, "pineapple"));
+//--------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------
+// - Define a function named `removeAll(array, value)` that takes in two arguments.
+// The first argument should be an array and the second argument should be a value you wish to remove
+//
+// define a function with 2 parameters
+// first parameter should be an array
+// second parameter should be the element to remove
+// return the original array without any of the second parameter values
+//
+// Given:
+// let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+//
+// - `removeAll(bugs, "ant")`
+// should return `["mosquito", "scorpion", mosquito", "typo", "reference error", "type error"]`
+//
+// - `removeAll(bugs, "mosquito")`
+// should return `["ant", "scorpion", "ant", "ant", "typo", "reference error", "type error"]`
+//
+// - `removeAll(bugs, "roach")`
+// should return the original array b/c "roach" has no occurrences.
+//
+//  function removeAll(x,y){
+//  if (Array.isArray(x)){
+//   for (let i = x.length -1; i > -1; i--){
+//    if (x[i] === y){
+//     x.splice(i,1);
+//    }
+//   }
+//   return x;
+//  }
+// }
+//
+// console.log(removeAll(bugs, "ant"));
+// console.log(removeAll(bugs, "mosquito"));
+// console.log(removeAll(bugs, "roach"));
+//
 //--------------------------------------------------------------------------------
 
  */
