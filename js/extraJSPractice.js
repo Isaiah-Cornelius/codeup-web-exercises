@@ -4,15 +4,6 @@
  * ARRAYS
  */
 
-//Make a function called randomIntBetween(min, max) that returns a random number between the min and the max.
-
-function randomIntBetween(min,max){
- // Explain (max-min-1); the original max - min makes a range where the inclusive min will sometimes be selected. In this case, we want a number greater than min so by restricting this piece, the range is correct but the min still might be selected, the max -1 is exclusive at this moment.
- //Explain + min + 1; now that the range is correct, adding min shifts it near the correct position, by adding one it makes the lowest inclusive value the next greatest integer than min, meaning the random number will now exclude the min value, generating a number between min and max, or min < x < max.
- return Math.floor(Math.random() * (max - min - 1) + min + 1);
-}
-
-
  /**
  * - Make a function called `coinFlip()` that returns either 0 or 1, randomly
  * - Make a function called `twoDice()` that returns the sum of rolling two six
@@ -715,4 +706,13 @@ function randomIntBetween(min,max){
 //
 //--------------------------------------------------------------------------------
 
+// -------------------------------------------------------------------------------Make a function called randomIntBetween(min, max) that returns a random
+// number between the min and the max.
+//
+// function randomIntBetween(min,max){
+// // Explain (max-min-1); the original max - min makes a range where the inclusive min will sometimes be selected. In this case, we want a number greater than min so by restricting this piece, the range is correct but the min still might be selected, the max -1 is exclusive at this moment.
+// //Explain + min + 1; now that the range is correct, adding min shifts it near the correct position, by adding one it makes the lowest inclusive value the next greatest integer than min, meaning the random number will now exclude the min value, generating a number between min and max, or min < x < max.
+// return Math.floor(Math.random() * (max - min - 1) + min + 1);
+// }
+// --------------------------------------------------------------------------------
  */
