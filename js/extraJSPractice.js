@@ -2,23 +2,45 @@
 
 /**
  * ARRAYS
- * - Define a function named `allIndexesOf` that takes in two arguments. The first
- * argument should be the array to search and the second argument should be the
- * value you want to search for. If the item does not exist in the provided
- * array, return an empty array.
- *
- *     Given:
- *
- * ```js
- *     var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
- *     ```
- *
- * - `allIndexesOf(fruits, "apple")` should return the array [0, 3]
- * - `allIndexesOf(fruits, "guava")` should return the array []
- * - `allIndexesOf(fruits, "pineapple")` should return [4]
- *
- *
- *  -----
+ */
+
+//--------------------------------------------------------------------------------
+// - Define a function named `allIndexesOf` that takes in two arguments. The first
+// argument should be the array to search and the second argument should be the
+// value you want to search for. If the item does not exist in the provided
+// array, return an empty array.
+//
+//     Given:
+//
+// ```js
+//     var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+//     ```
+//
+// - `allIndexesOf(fruits, "apple")` should return the array [0, 3]
+// - `allIndexesOf(fruits, "guava")` should return the array []
+// - `allIndexesOf(fruits, "pineapple")` should return [4]
+
+let fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+
+function allIndexesOf(x,y){
+    if (Array.isArray(x)){
+        let indexArray = [];
+        for(let i = 0; i < x.length; i++){
+            if(y === x[i]){
+                indexArray.push(i);
+            }
+        } return indexArray;
+    } return "Invalid type, please enter an array as the first parameter."
+}
+
+console.log(allIndexesOf(fruits, "apple"));
+console.log(allIndexesOf(fruits, "guava"));
+console.log(allIndexesOf(fruits, "pineapple"));
+//--------------------------------------------------------------------------------
+
+
+
+ /**  -----
  *
  *
  *     - Define a function named `removeAll(array, value)` that takes in two arguments.
