@@ -5,64 +5,45 @@
  */
 
 //--------------------------------------------------------------------------------
-// - Define a function named `allIndexesOf` that takes in two arguments. The first
-// argument should be the array to search and the second argument should be the
-// value you want to search for. If the item does not exist in the provided
-// array, return an empty array.
+//     - Define a function named `removeAll(array, value)` that takes in two arguments.
+//     The first argument should be an array and the second argument should be a
+// value you wish to remove
 //
-//     Given:
+//define a function with 2 parameters
+//first parameter should be an array
+//second parameter should be the element to remove
+//return the original array without any of the second parameter values
 //
-// ```js
-//     var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
-//     ```
+// Given:
+let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
 //
-// - `allIndexesOf(fruits, "apple")` should return the array [0, 3]
-// - `allIndexesOf(fruits, "guava")` should return the array []
-// - `allIndexesOf(fruits, "pineapple")` should return [4]
+//- `removeAll(bugs, "ant")`
+// should return `["mosquito", "scorpion", mosquito", "typo", "reference error", "type error"]`
+//
+//- `removeAll(bugs, "mosquito")`
+// should return `["ant", "scorpion", "ant", "ant", "typo", "reference error", "type error"]`
+//
+//- `removeAll(bugs, "roach")`
+// should return the original array b/c "roach" has no occurrences.
 
-let fruits = ["apple", "banana", "orange", "apple", "pineapple"];
-
-function allIndexesOf(x,y){
-    if (Array.isArray(x)){
-        let indexArray = [];
-        for(let i = 0; i < x.length; i++){
-            if(y === x[i]){
-                indexArray.push(i);
-            }
-        } return indexArray;
-    } return "Invalid type, please enter an array as the first parameter."
+function removeAll(x,y){
+ if (Array.isArray(x)){
+  for (let i = x.length -1; i > -1; i--){
+   if (x[i] === y){
+    x.splice(i,1);
+   }
+  }
+  return x;
+ }
 }
 
-console.log(allIndexesOf(fruits, "apple"));
-console.log(allIndexesOf(fruits, "guava"));
-console.log(allIndexesOf(fruits, "pineapple"));
+// console.log(removeAll(bugs, "ant"));
+//console.log(removeAll(bugs, "mosquito"));
+//console.log(removeAll(bugs, "roach"));
+
 //--------------------------------------------------------------------------------
 
-
-
- /**  -----
- *
- *
- *     - Define a function named `removeAll(array, value)` that takes in two arguments.
- *     The first argument should be an array and the second argument should be a
- * value you wish to remove
- *
- * Given:
- *
- *     ```js
- *     var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
- *     ```
- *
- *     - `removeAll(bugs, "ant")` should return `["mosquito", "scorpion",
- *       "mosquito", "typo", "reference error", "type error"]`
- *     - `removeAll(bugs, "mosquito")` should return `["ant", "scorpion", "ant",
- *       "ant", "typo", "reference error", "type error"]`
- *     - `removeAll(bugs, "roach")` should return the original array b/c "roach"
- * has no occurrances.
- *
- *  -----
- *
- *
+ /**
  *     - Make a function called randomIntBetween(min, max) that returns a random number
  * between the min and the max.
  * - Make a function called `coinFlip()` that returns either 0 or 1, randomly
@@ -108,13 +89,13 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *
  * // Exercise 1. Write a function named secondToLast() that returns the second to last element
  *
- * // Exercise 2. Write a function named rest() that takes an an array and returns an array containing everything except the first element.
+ * // Exercise 2. Write a function named rest() that takes in an array and returns an array containing everything except the first element.
  *
  * // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
  *
  * // Exercise 3.1 Write a function named getShortestString that takes in an array of strings and returns the shortest string in that array.
  *
- * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all of the elements of the first array along with all of the elements of the second array
+ * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all the elements of the first array along with all the elements of the second array
  * // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
  *
  * // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
@@ -122,22 +103,22 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *
  * // Exercise 6. Write a function named reverseArray that takes in an array and returns it reversed, but without altering the original array.
  *
- * // Exercies 7. Write a function named getRandomQuote().
+ * // Exercise 7. Write a function named getRandomQuote().
  * //   Inside of the function, create an array of strings where each string is a quote or thought you find inspirational
  * //   getRandomQuote should generate a random number between 0 and the array's length minus 1
- * //   use the randomly generated number as your index
+ * //   use the randomly generated number for your index
  * //   return a random quote.
  *
  * // Exercise 8. Write a function named getIndexesOf() that takes in two arguments.
  * // The first argument should be a specific numeral or character
  * // The second argument should be any given string
- * // getIndexesOf() should return an array containing all of the indexes of that character in the string
+ * // getIndexesOf() should return an array containing all the indexes of that character in the string
  * // Example: getIndexesOf("a", "banana") should return the array [1, 3, 5]
  * // Example: getIndexesOf("z", "banana") should return an empty array [] since there are no "z" characters in "banana"
  *
  * // Exercise 9. Write a function named removeAll.
  * // It should accept an array and a value
- * // removeAll should return an array with all of the original contents EXCEPT for the provided value
+ * // removeAll should return an array with all the original contents EXCEPT for the provided value
  * // iterate across the input array
  * // output array
  * // Example: removeAll([1, 2, 3], 2) should return [1, 3]
@@ -230,7 +211,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *   input
  * - Write a function named `cubeRoot(n)` that returns the cube root of the input
  * - Write a function named `invertSign(number)` that returns a negative version of
- *   a postive number, a positve version of negative, and false for all else.
+ *   a positive number, a positive version of negative, and false for all else.
  * - Write a function named `degreesToRadians(number)`
  * - Write a function named `radiansToDegrees(number)`
  * - Make a function named `isBlank(input)` that determines if a given input is
@@ -355,7 +336,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *
  *     - Create a function `returnFalseMessage()` that returns the string "Hey, it's false!"
  *     - Create a function `returnMessage()` that takes in a function and returns the call to the function
- *     - Experiement passing in different functions.
+ *     - Experiment passing in different functions.
  *
  * 1. Create a function, `willLoginUser()` that takes in a username string,
  *    password string, user age, a boolean indicating if they are an admin.
@@ -418,7 +399,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *
  *     Include properties for...
  *
- *     - `triggered` - whether or not the box has been sprung (should be false by
+ *     - `triggered` - whether the box has been sprung (should be false by
  *       default)
  *     - `intervalId` - set to null
  *     - `play()` - once called, if triggered is false, console.log one new element
@@ -477,7 +458,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  * 3. Write a function that takes a string and returns a "title case" string
  *
  *         "The QUICK brown fox JuMpS ovER the LAZy dog"
- *         The Quick Brown Fox Jumps Over The Lazy Dog"
+ *         "The Quick Brown Fox Jumps Over The Lazy Dog"
  *
  * 4. Write a function that returns and object with keys set to the argument passed
  *    in and values equal to the types of the corresponding keys. Arguments will be
@@ -503,7 +484,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
 
 /**
  * 1. Write a function, `filterNumbers()` that takes in an array of mixed data
- *    types and returns an array of only the numbers type in ascencding order.
+ *    types and returns an array of only the numbers type in ascending order.
  *
  *     Example input: `["fred", true, 5, 3]`
  *     Example output: `[3, 5]`
@@ -526,7 +507,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *           },
  *           {
  *             name: "Mr. Pig",
- *             breed: "Mastif",
+ *             breed: "Mastiff",
  *             age: 10
  *           }
  *         ]
@@ -546,12 +527,12 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *           },
  *           {
  *             name: "Mr. Pig",
- *             breed: "Mastif",
+ *             breed: "Mastiff",
  *             age: 11
  *           }
  *         ]
  *
- * 1. Write a function, `washCars()` that takes in a array of car objects and sets
+ * 1. Write a function, `washCars()` that takes in an array of car objects and sets
  *    the boolean properties of `isDirty` to false.
  *
  *     Example input:
@@ -644,8 +625,8 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *           }
  *         ]
  *
- * 1. Create a function, `makeSandwhichObjects()` that takes in two array of
- *    strings, breads and fillings and returns an array of `sandwhichObjects` that
+ * 1. Create a function, `makeSandwichObjects()` that takes in two array of
+ *    strings, breads and fillings and returns an array of `sandwichObjects` that
  *    contain properties for bread and filling and values correspond to the same
  *    order of the two passed in arrays. Assume the two array inputs are the same
  *    length.
@@ -667,7 +648,7 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *       "tuna"
  *     ];
  *
- *     makeSandwhichObjects(breads, fillings)
+ *     makeSandwichObjects(breads, fillings)
  *     ```
  *
  *     Example Output:
@@ -690,4 +671,42 @@ console.log(allIndexesOf(fruits, "pineapple"));
  *             filling: "tuna"
  *           }
  *         ]
+ */
+
+
+/** COMPLETED ITEMS
+//--------------------------------------------------------------------------------
+// - Define a function named `allIndexesOf` that takes in two arguments. The first
+// argument should be the array to search and the second argument should be the
+// value you want to search for. If the item does not exist in the provided
+// array, return an empty array.
+//
+//     Given:
+//
+// ```js
+//     var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+//     ```
+//
+// - `allIndexesOf(fruits, "apple")` should return the array [0, 3]
+// - `allIndexesOf(fruits, "guava")` should return the array []
+// - `allIndexesOf(fruits, "pineapple")` should return [4]
+//
+// let fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+//
+// function allIndexesOf(x,y){
+//     if (Array.isArray(x)){
+//         let indexArray = [];
+//         for(let i = 0; i < x.length; i++){
+//             if(y === x[i]){
+//                 indexArray.push(i);
+//             }
+//         } return indexArray;
+//     } return "Invalid type, please enter an array as the first parameter."
+// }
+//
+// console.log(allIndexesOf(fruits, "apple"));
+// console.log(allIndexesOf(fruits, "guava"));
+// console.log(allIndexesOf(fruits, "pineapple"));
+//--------------------------------------------------------------------------------
+
  */
