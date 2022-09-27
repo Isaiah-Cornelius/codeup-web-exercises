@@ -10,6 +10,31 @@ h1, h2 {
 }
 
 body {
+    background-image: url(../pictures/backgroundPicture1.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-color: aquamarine;
-    background-image: url(pictures/backgroundPicture1.jpeg);
+}
+
+ul {
+    list-style-type: circle;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+table {
+    font-size: 2em;
+}
+
+th, tr, td {
+    padding: 1em;
+    font-size: 1em;
+}
+
+a {
+
 }
