@@ -1,4 +1,15 @@
 .fancy-header {
     color: purple; /* single line comment */
     text-decoration: underline;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #115588;
+    text-decoration: underline;
+}
+
+body {
+    background-color: aquamarine;
+    background-image: url(pictures/backgroundPicture1.jpeg);
 }
