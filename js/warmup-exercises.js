@@ -1,68 +1,68 @@
 "use strict";
 
 //// 9/27/22
-/**
-There are 100 lockers that line the main hallway of Chelm High School.
- Every night, the school principal makes sure all the lockers are closed so that there will be an orderly start to the next day.
- One day, 100 mischievous students decide that they will play a prank.
- The students all meet before school starts and line up.
- The first student then walks down the hallway, and opens every locker.
- The next student follows by closing every other locker (starting at the second locker).
- Student 3 then goes to every third locker (starting with the third) and opens it if it’s closed, and closes it if it’s open.
- Student 4 follows by opening every fourth locker if it’s closed and closing it if it’s open.
- This goes on and on until Student 100 finally goes to the hundredth locker.
- When the principal arrives later in the morning, which lockers does she find open?
- */
-let lockers = Array(100).fill(false);
-
-function factors(num){
-    if (num <= Infinity && (typeof num === 'string' || typeof num === 'number')){
-        let numFactors = []
-        for (let i = 1; i <= num; i++){
-            if (num % i === 0){
-                numFactors.push(i);
-            }
-        }
-        return numFactors.length;
-    }
-    return "Invalid argument; please enter a number or numeric string"
-}
-
-function lockersPrank(arr){
-    if (Array.isArray(arr)){
-        let openLockers = [];
-        arr.forEach(function (element, index){
-            if (factors(index+1)%2===1){
-                openLockers.push(index + 1)
-            }
-        })
-        return "Open lockers are : " + openLockers;
-    }
-    return "Invalid argument; please enter an array"
-}
-
-let lockersAreOpen = Array(100).fill(false)
-function oneHundredLockersPrank(x){
-    if (Array.isArray(x) === true){
-        let openLockers = [];
-        for(let i = 1; i <= x.length; i++){
-            x.forEach(function (element, index){
-                if ((index + 1) % i === 0){
-                    x[index] = !element;
-                }
-            })
-        }
-        for(let z = 0; z<x.length; z++){
-            if(x[z] === true){
-                openLockers.push(z + 1);
-            }
-        }
-        console.log("Open lockers are : " + openLockers);
-        return x;
-
-    }
-    return "Invalid argument; please enter the array you wish to prank."
-}
+// /**
+// There are 100 lockers that line the main hallway of Chelm High School.
+//  Every night, the school principal makes sure all the lockers are closed so that there will be an orderly start to the next day.
+//  One day, 100 mischievous students decide that they will play a prank.
+//  The students all meet before school starts and line up.
+//  The first student then walks down the hallway, and opens every locker.
+//  The next student follows by closing every other locker (starting at the second locker).
+//  Student 3 then goes to every third locker (starting with the third) and opens it if it’s closed, and closes it if it’s open.
+//  Student 4 follows by opening every fourth locker if it’s closed and closing it if it’s open.
+//  This goes on and on until Student 100 finally goes to the hundredth locker.
+//  When the principal arrives later in the morning, which lockers does she find open?
+//  */
+// let lockers = Array(100).fill(false);
+//
+// function factors(num){
+//     if (num <= Infinity && (typeof num === 'string' || typeof num === 'number')){
+//         let numFactors = []
+//         for (let i = 1; i <= num; i++){
+//             if (num % i === 0){
+//                 numFactors.push(i);
+//             }
+//         }
+//         return numFactors.length;
+//     }
+//     return "Invalid argument; please enter a number or numeric string"
+// }
+//
+// function lockersPrank(arr){
+//     if (Array.isArray(arr)){
+//         let openLockers = [];
+//         arr.forEach(function (element, index){
+//             if (factors(index+1)%2===1){
+//                 openLockers.push(index + 1)
+//             }
+//         })
+//         return "Open lockers are : " + openLockers;
+//     }
+//     return "Invalid argument; please enter an array"
+// }
+//
+// let lockersAreOpen = Array(100).fill(false)
+// function oneHundredLockersPrank(x){
+//     if (Array.isArray(x) === true){
+//         let openLockers = [];
+//         for(let i = 1; i <= x.length; i++){
+//             x.forEach(function (element, index){
+//                 if ((index + 1) % i === 0){
+//                     x[index] = !element;
+//                 }
+//             })
+//         }
+//         for(let z = 0; z<x.length; z++){
+//             if(x[z] === true){
+//                 openLockers.push(z + 1);
+//             }
+//         }
+//         console.log("Open lockers are : " + openLockers);
+//         return x;
+//
+//     }
+//     return "Invalid argument; please enter the array you wish to prank."
+// }
 //// 9/26/22
 // Write a function that takes an array of objects and a string as arguments. Add a property with key ‘continent’ and value equal to the string to each of the objects. Return the new array of objects. Don’t mutate the original array.
 // example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
