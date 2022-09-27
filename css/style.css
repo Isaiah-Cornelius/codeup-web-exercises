@@ -1,5 +1,5 @@
 .fancy-header {
-    color: purple; /* single line comment */
+    color: #115588; /* single line comment */
     text-decoration: underline;
     text-align: center;
 }
@@ -35,6 +35,7 @@ th, tr, td {
     font-size: 1em;
 }
 
-a {
-
-}
+a:link {color: red;}
+a:visited {color: orange;}
+a:hover {color: yellow;}
+a:active {color: green;}
