@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-info-color: #c9dfff;
+    --text-info-color: #41389f;
+    --bg-success-color: #c6f4d8;
+    --text-success-color: #066d2e;
+    --bg-warning-color: #fcfbc3;
+    --text-warning-color: #90780f;
+    --bg-error-color: #ffd1d7;
+    --text-error-color: #930935;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+
+.message {
+    width: 98%;
+    padding: .5em;
+    border: #d0d5db solid 1px;
+    margin: .5em;
+    border-radius: .3em;
+
+}
+
+.message-info {
+    background-color: var(--bg-info-color);
+    color: var(--text-info-color);
+}
+.message-success {
+    background-color: var(--bg-success-color);
+    color: var(--text-success-color);
+}
+.message-warning {
+    background-color: var(--bg-warning-color);
+    color: var(--text-warning-color);
+}
+.message-error {
+    background-color: var(--bg-error-color);
+    color: var(--text-error-color);
+}
