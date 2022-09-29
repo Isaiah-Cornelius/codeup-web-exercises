@@ -750,9 +750,13 @@
 //// --------------------------------------------------------------------------------
 ////Make a function called `listOfRolls(num)` that takes in a number containing how many 6-sided dice rolls you want to make. The `listOfRolls` function should return an array of that length, where each element of the array is the result of the `rollDie` function.
 // function listOfRolls(x){
+//// if the argument is positive with the type of 'string' or 'number', do the function, otherwise return 'Invalid input'
 //  if ((x <= Infinity && x > 0) && (typeof x === 'string' || typeof x === 'number')){
+//// account for a float argument
 //   x = parseInt(x);
+//// create an array to hold the element values for return statement
 //   let arr = [];
+//// create a loop that adds a random number between 0 and 7 to the array until arr.length == x
 //   for (let i = 0; i < x; i++){
 //    arr.push(Math.floor(Math.random()*(6)+1));
 //   }
