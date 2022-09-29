@@ -5,13 +5,8 @@
  */
 
 
+
  /**
- * - Make a function called `twelveSidedDie()` that returns a random integer
- * between 1 and 12.
- * - Make a function called `tetrahedron()` that returns a random integer between 1
- * and 4.
- *
- *  -----
  *
  *     - Make a function called `rollDie()` that returns an integer between 1 and 6.
  * - Make a function called `listOfRolls(num)` that takes in a number containing
@@ -580,11 +575,7 @@
  *           }
  *         ]
  *
- * 1. Create a function, `makeSandwichObjects()` that takes in two array of
- *    strings, breads and fillings and returns an array of `sandwichObjects` that
- *    contain properties for bread and filling and values correspond to the same
- *    order of the two passed in arrays. Assume the two array inputs are the same
- *    length.
+ * ////Create a function, `makeSandwichObjects()` that takes in two array of strings, breads and fillings and returns an array of `sandwichObjects` that contain properties for bread and filling and values correspond to the same order of the two passed in arrays. Assume the two array inputs are the same length.
  *
  *     Example Input:
  *
@@ -631,10 +622,10 @@
 
 /** COMPLETED ITEMS
 //--------------------------------------------------------------------------------
-// - Define a function named `allIndexesOf` that takes in two arguments. The first
-// argument should be the array to search and the second argument should be the
-// value you want to search for. If the item does not exist in the provided
-// array, return an empty array.
+//// Define a function named `allIndexesOf` that takes in two arguments. The first
+//// argument should be the array to search and the second argument should be the
+//// value you want to search for. If the item does not exist in the provided
+//// array, return an empty array.
 //
 //     Given:
 //
@@ -665,15 +656,15 @@
 //--------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
-// - Define a function named `removeAll(array, value)` that takes in two arguments.
-// The first argument should be an array and the second argument should be a value you wish to remove
+//// Define a function named `removeAll(array, value)` that takes in two arguments.
+//// The first argument should be an array and the second argument should be a value you wish to remove
 //
-// define a function with 2 parameters
-// first parameter should be an array
-// second parameter should be the element to remove
-// return the original array without any of the second parameter values
+//// define a function with 2 parameters
+//// first parameter should be an array
+//// second parameter should be the element to remove
+//// return the original array without any of the second parameter values
 //
-// Given:
+//// Given:
 // let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
 //
 // - `removeAll(bugs, "ant")`
@@ -702,8 +693,8 @@
 //
 //--------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------Make a function called randomIntBetween(min, max) that returns a random
-// number between the min and the max.
+// -------------------------------------------------------------------------------
+////Make a function called randomIntBetween(min, max) that returns a random number between the min and the max.
 //
 // function randomIntBetween(min,max){
 // // Explain (max-min-1); the original max - min makes a range where the inclusive min will sometimes be selected. In this case, we want a number greater than min so by restricting this piece, the range is correct but the min still might be selected, the max -1 is exclusive at this moment.
@@ -713,14 +704,14 @@
 // --------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
-//Make a function called `coinFlip()` that returns either 0 or 1, randomly
+////Make a function called `coinFlip()` that returns either 0 or 1, randomly
 // function coinFlip(){
 //  return Math.floor(Math.random() * (2));
 // }
 // --------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
-// Make a function called `twoDice()` that returns the sum of rolling two six sided dice.
+//// Make a function called `twoDice()` that returns the sum of rolling two six sided dice.
 // function twoDice(){
 //  let x = Math.floor(Math.random() * (6) + 1);
 //  let y = Math.floor(Math.random() * (6) + 1);
@@ -731,9 +722,23 @@
 // --------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
-// Make a function called `twentySidedDie()` that returns a random integer between 1 and 20.
+//// Make a function called `twentySidedDie()` that returns a random integer between 1 and 20.
 // function twentySidedDie(){
 //  return Math.floor(Math.random() * (20) + 1);
 // }
 // --------------------------------------------------------------------------------
- */
+
+// --------------------------------------------------------------------------------
+//// Make a function called `twelveSidedDie()` that returns a random integer between 1 and 12.
+// function twelveSidedDie(){
+//  return Math.floor(Math.random() * (12) + 1);
+// }
+// --------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------
+//// Make a function called `tetrahedron()` that returns a random integer between 1 and 4.
+// function tetrahedron(){
+//  return Math.floor(Math.random() * (4) + 1);
+// }
+// --------------------------------------------------------------------------------
+ */{}
