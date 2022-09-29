@@ -6,9 +6,11 @@
 
 
 
+
+
  /**
  *
- *     - Make a function called `rollDie()` that returns an integer between 1 and 6.
+ *     -
  * - Make a function called `listOfRolls(num)` that takes in a number containing
  * how many 6-sided dice rolls you want to make. The `listOfRolls` function
  * should return an array of that length, where each element of the array is the
@@ -621,7 +623,7 @@
 
 
 /** COMPLETED ITEMS
-//--------------------------------------------------------------------------------
+////--------------------------------------------------------------------------------
 //// Define a function named `allIndexesOf` that takes in two arguments. The first
 //// argument should be the array to search and the second argument should be the
 //// value you want to search for. If the item does not exist in the provided
@@ -653,9 +655,9 @@
 // console.log(allIndexesOf(fruits, "apple"));
 // console.log(allIndexesOf(fruits, "guava"));
 // console.log(allIndexesOf(fruits, "pineapple"));
-//--------------------------------------------------------------------------------
+////--------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 //// Define a function named `removeAll(array, value)` that takes in two arguments.
 //// The first argument should be an array and the second argument should be a value you wish to remove
 //
@@ -691,9 +693,9 @@
 // console.log(removeAll(bugs, "mosquito"));
 // console.log(removeAll(bugs, "roach"));
 //
-//--------------------------------------------------------------------------------
+////--------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------
+//// -------------------------------------------------------------------------------
 ////Make a function called randomIntBetween(min, max) that returns a random number between the min and the max.
 //
 // function randomIntBetween(min,max){
@@ -701,16 +703,16 @@
 // //Explain + min + 1; now that the range is correct, adding min shifts it near the correct position, by adding one it makes the lowest inclusive value the next greatest integer than min, meaning the random number will now exclude the min value, generating a number between min and max, or min < x < max.
 // return Math.floor(Math.random() * (max - min - 1) + min + 1);
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 ////Make a function called `coinFlip()` that returns either 0 or 1, randomly
 // function coinFlip(){
 //  return Math.floor(Math.random() * (2));
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 //// Make a function called `twoDice()` that returns the sum of rolling two six sided dice.
 // function twoDice(){
 //  let x = Math.floor(Math.random() * (6) + 1);
@@ -719,26 +721,33 @@
 //  console.log("Dice #2 is :" + y);
 //  return x + y;
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 //// Make a function called `twentySidedDie()` that returns a random integer between 1 and 20.
 // function twentySidedDie(){
 //  return Math.floor(Math.random() * (20) + 1);
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 //// Make a function called `twelveSidedDie()` that returns a random integer between 1 and 12.
 // function twelveSidedDie(){
 //  return Math.floor(Math.random() * (12) + 1);
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
 //// Make a function called `tetrahedron()` that returns a random integer between 1 and 4.
 // function tetrahedron(){
 //  return Math.floor(Math.random() * (4) + 1);
 // }
-// --------------------------------------------------------------------------------
+//// --------------------------------------------------------------------------------
+
+//// --------------------------------------------------------------------------------
+//// Make a function called `rollDie()` that returns an integer between 1 and 6.
+// function rollDie(){
+//  return Math.floor(Math.random() * (6) + 1);
+// }
+//// --------------------------------------------------------------------------------
  */{}
