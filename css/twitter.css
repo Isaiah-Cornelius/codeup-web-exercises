@@ -61,6 +61,7 @@ a {
     position: absolute;
     /*top: -28px;*/
     top: calc(((var(--profile-img-height) / 2) - (var(--profile-height) / 2))* -1);
+    height: var(--profile-img-height);
 }
 .profile-form{
     float: right;
