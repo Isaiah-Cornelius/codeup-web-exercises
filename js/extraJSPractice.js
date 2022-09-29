@@ -7,14 +7,10 @@
 
 
 
-
  /**
  *
  *     -
- * - Make a function called `listOfRolls(num)` that takes in a number containing
- * how many 6-sided dice rolls you want to make. The `listOfRolls` function
- * should return an array of that length, where each element of the array is the
- * result of the `rollDie` function.
+ * -
  *
  * - Make a function called `listOfRollsFromDieFunc(numberOfRolls, diceFunction)`
  *
@@ -750,4 +746,20 @@
 //  return Math.floor(Math.random() * (6) + 1);
 // }
 //// --------------------------------------------------------------------------------
+
+//// --------------------------------------------------------------------------------
+////Make a function called `listOfRolls(num)` that takes in a number containing how many 6-sided dice rolls you want to make. The `listOfRolls` function should return an array of that length, where each element of the array is the result of the `rollDie` function.
+// function listOfRolls(x){
+//  if ((x <= Infinity && x > 0) && (typeof x === 'string' || typeof x === 'number')){
+//   x = parseInt(x);
+//   let arr = [];
+//   for (let i = 0; i < x; i++){
+//    arr.push(Math.floor(Math.random()*(6)+1));
+//   }
+//   return arr;
+//  }
+//  return "Invalid input; please enter an argument with the type of number or numeric string"
+// }
+//// --------------------------------------------------------------------------------
  */{}
+

@@ -88,17 +88,17 @@ a {
 .profile-details{
     float: left;
     width: calc(25% - 1em);
-    margin: 0em .5em;
+    margin: 0 .5em;
 }
 .timeline{
     float: left;
     width: calc(50% - 1em);
-    margin: 0em .5em;
+    margin: 0 .5em;
 }
 .who-to-follow{
     float: left;
     width: calc(25% - 1em);
-    margin: 0em .5em;
+    margin: 0 .5em;
 }
 .container{
     margin-top: 2em;
@@ -121,7 +121,7 @@ a {
 }
 .profile-items{
     list-style: none;
-    padding: 0em;
+    padding: 0;
 }
 .profile-entry{
     margin: .5em;
