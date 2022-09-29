@@ -4,6 +4,8 @@
     --main-link-color: #848487;
     --light-bg: #FFF;
     --separator-color: #DDD;
+    --profile-height: 80px;
+    --profile-img-height: 136px;
 }
 * {
     box-sizing: border-box;
@@ -52,12 +54,13 @@ a {
 }
 .profile {
     position: relative;
-    height: 80px;
+    height: var(--profile-height);
     background: var(--light-bg);
 }
 .profile-image {
     position: absolute;
-    top: -28px;
+    /*top: -28px;*/
+    top: calc(((var(--profile-img-height) / 2) - (var(--profile-height) / 2))* -1);
 }
 .profile-form{
     float: right;
