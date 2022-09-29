@@ -6,10 +6,6 @@
 
 
  /**
- * - Make a function called `twoDice()` that returns the sum of rolling two six
- * sided dice.
- * - Make a function called `twentySidedDie()` that returns a random integer
- * between 1 and 20.
  * - Make a function called `twelveSidedDie()` that returns a random integer
  * between 1 and 12.
  * - Make a function called `tetrahedron()` that returns a random integer between 1
@@ -731,6 +727,13 @@
 //  console.log("Dice #1 is :" + x);
 //  console.log("Dice #2 is :" + y);
 //  return x + y;
+// }
+// --------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------
+// Make a function called `twentySidedDie()` that returns a random integer between 1 and 20.
+// function twentySidedDie(){
+//  return Math.floor(Math.random() * (20) + 1);
 // }
 // --------------------------------------------------------------------------------
  */
