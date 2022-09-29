@@ -4,6 +4,7 @@
  * ARRAYS
  */
 
+
  /**
  * - Make a function called `twoDice()` that returns the sum of rolling two six
  * sided dice.
@@ -719,6 +720,17 @@
 //Make a function called `coinFlip()` that returns either 0 or 1, randomly
 // function coinFlip(){
 //  return Math.floor(Math.random() * (2));
+// }
+// --------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------
+// Make a function called `twoDice()` that returns the sum of rolling two six sided dice.
+// function twoDice(){
+//  let x = Math.floor(Math.random() * (6) + 1);
+//  let y = Math.floor(Math.random() * (6) + 1);
+//  console.log("Dice #1 is :" + x);
+//  console.log("Dice #2 is :" + y);
+//  return x + y;
 // }
 // --------------------------------------------------------------------------------
  */
