@@ -1,32 +1,6 @@
 "use strict";
 
 /**
- * ARRAYS
- */
-
-
-
-
- /**
- *
- *     -
- * -
- *
- * - Make a function called `listOfRollsFromDieFunc(numberOfRolls, diceFunction)`
- *
- * This function should take in two arguments:
- *
- *     - The first argument is the number of rolls you want to make.
- * - The second argument is a function that contains the function definition
- * for the type of die you want to roll.
- *
- *     For example, if we call `listOfDieRollsFromDieFunc(1, tetrahedron)`, then the
- * function will return an array containing one value that is the result of
- * calling the `tetrahedron` function.
- */
-
-
-/**
  * JS Array Practice
  * Intermediate Array practice: array creation, iteration, and manipulation
  */
@@ -34,13 +8,57 @@
 /**
  *
  * // Exercise 0. Write a function named first() that returns only the first element of an array
- *
+ */
+let array = [1,2,3,4,5];
+function first(arr){
+ if(Array.isArray(arr)){
+  return arr[0];
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+/**
  * // Exercise 1. Write a function named secondToLast() that returns the second to last element
  *
+ */
+function secondToLast(arr){
+ if(Array.isArray(arr)){
+  if(arr.length > 1){
+   return arr[arr.length-2];
+  }
+  return "Invalid array length; please enter an array with 2 or more elements."
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+/**
  * // Exercise 2. Write a function named rest() that takes in an array and returns an array containing everything except the first element.
- *
+ */
+function rest(arr){
+ if (Array.isArray(arr)){
+  return arr.slice(1);
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+/**
  * // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
- *
+ */
+function arrayElementStringLength(arr){
+ if (Array.isArray(arr)){
+  let array = [];
+  for(let i = 0; i<arr.length; i++){
+   array.push(arr[i].split(',').length)
+  }
+  return array
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+function getLongestString(arr){
+ if (Array.isArray(arr)){
+
+
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+/**
  * // Exercise 3.1 Write a function named getShortestString that takes in an array of strings and returns the shortest string in that array.
  *
  * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all the elements of the first array along with all the elements of the second array
@@ -765,5 +783,29 @@
 //  return "Invalid input; please enter an argument with the type of number or numeric string"
 // }
 //// --------------------------------------------------------------------------------
- */{}
+
+//// --------------------------------------------------------------------------------
+//// Make a function called `listOfRollsFromDieFunc(numberOfRolls, diceFunction)`
+// This function should take in two arguments:
+//- The first argument is the number of rolls you want to make.
+//- The second argument is a function that contains the function definition
+// for the type of die you want to roll.
+// For example, if we call `listOfDieRollsFromDieFunc(1, tetrahedron)`, then the
+// function will return an array containing one value that is the result of
+// calling the `tetrahedron` function.
+// function listOfRollsFromDieFunc(numberOfRolls, diceFunction){
+//  if ((numberOfRolls > 0 && numberOfRolls < Infinity) && (typeof numberOfRolls === 'string' || typeof numberOfRolls === 'number')){
+//   if (typeof diceFunction === 'function'){
+//    let arr = [];
+//    for (let i = 0; i < numberOfRolls; i++){
+//     arr.push(diceFunction());
+//    }
+//    return arr;
+//   }
+//   return "Invalid input: please enter a function as the second parameter"
+//  }
+//  return "Invalid input; please enter a number or numeric string as the first argument"
+// }
+//// --------------------------------------------------------------------------------
+ */
 
