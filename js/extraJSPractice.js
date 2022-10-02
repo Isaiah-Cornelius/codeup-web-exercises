@@ -9,7 +9,7 @@
  *
  * // Exercise 0. Write a function named first() that returns only the first element of an array
  */
-let array = [1,2,3,4,5];
+let numArray = [1,2,3,4,5];
 function first(arr){
  if(Array.isArray(arr)){
   return arr[0];
@@ -41,20 +41,36 @@ function rest(arr){
 /**
  * // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
  */
-function arrayElementStringLength(arr){
- if (Array.isArray(arr)){
-  let array = [];
-  for(let i = 0; i<arr.length; i++){
-   array.push(arr[i].split(',').length)
-  }
-  return array
+let stringArray = [1,2, 'four', 'four', 'five'];
+
+function stringLength(x){
+ if (typeof x === 'string'){
+  return x.split('').length;
  }
- return "Invalid input; please enter an array as an argument"
+ return 0;
 }
+
 function getLongestString(arr){
  if (Array.isArray(arr)){
-
-
+  let longestStringLength = 0;
+  let longestString = [];
+  for (let i = 0; i < arr.length; i++){
+   if (stringLength(arr[i]) > longestStringLength) {
+    longestString = [arr[i]];
+    longestStringLength = stringLength(arr[i]);
+   } else if (stringLength(arr[i]) == longestStringLength){
+    longestString.push(arr[i]);
+   }
+  }
+  console.log("longest string before sort :" + longestString);
+  longestString.sort()
+  console.log("longest string after sort :" + longestString);
+  for (let i = longestStringLength -1; i > 0; i--){
+   if (longestString[i] === longestString[i - 1]){
+    longestString.splice(i, 1);
+   }
+  }
+  return longestString;
  }
  return "Invalid input; please enter an array as an argument"
 }
