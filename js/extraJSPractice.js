@@ -41,34 +41,47 @@ function rest(arr){
 /**
  * // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
  */
-let stringArray = [1,2, 'four', 'four', 'five'];
+let stringArray = [1,2, 'four', 'four', 'five',12345];
 
 function stringLength(x){
+ // only evaluate arguments with the typeof 'string'
  if (typeof x === 'string'){
+  // turn the string into an array with each character in the string as an element, then return the length of that array
   return x.split('').length;
  }
  return 0;
 }
 
 function getLongestString(arr){
+ // Only allow arrays as arguments
  if (Array.isArray(arr)){
+  // Define variables to hold the length and element of the longest string
   let longestStringLength = 0;
   let longestString = [];
+  // For loop to compare each element length to the longest string before it
   for (let i = 0; i < arr.length; i++){
+   // If current iteration index string length is greater than current largest string length, reset the holder vars with the current element length and element
    if (stringLength(arr[i]) > longestStringLength) {
     longestString = [arr[i]];
     longestStringLength = stringLength(arr[i]);
-   } else if (stringLength(arr[i]) == longestStringLength){
+    // If current iteration index string is as long as current largest string length, add it to the largestString array. Only push to the longestString array if the length is greater than zero.
+   } else if (stringLength(arr[i]) === longestStringLength && longestStringLength > 0){
     longestString.push(arr[i]);
    }
   }
   console.log("longest string before sort :" + longestString);
+  // Sort the longestString array to prep for removing duplicate strings
   longestString.sort()
   console.log("longest string after sort :" + longestString);
+  // For loop from the back forward to delete any identical strings. By checking from the back forward, any deleted elements will shorten the array, meaning even when elements are deleted, the post decrement iteration will still evaluate every item in the array (no shifting/skipping elements when array is shortened, which would happen from evaluation forward from 0 to array.length)
   for (let i = longestStringLength -1; i > 0; i--){
+   // if current iteration element is exactly the same as the element before it (in front of || ahead of || to the left of), delete the current element
    if (longestString[i] === longestString[i - 1]){
     longestString.splice(i, 1);
    }
+  }
+  if (longestString.length === 0){
+   return 'No strings of any length within the evaluated array'
   }
   return longestString;
  }
