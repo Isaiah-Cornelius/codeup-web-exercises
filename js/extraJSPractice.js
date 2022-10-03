@@ -41,7 +41,7 @@ function rest(arr){
 /**
  * // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
  */
-let stringArray = [1,2, 'four', 'four', 'five',12345];
+let stringArray = [1,2, 'four', 'four', 'five',12345, 'z'];
 
 function stringLength(x){
  // only evaluate arguments with the typeof 'string'
@@ -69,13 +69,13 @@ function getLongestString(arr){
     longestString.push(arr[i]);
    }
   }
-  console.log("longest string before sort :" + longestString);
+  // console.log("longest string before sort :" + longestString);
   // Sort the longestString array to prep for removing duplicate strings
   longestString.sort()
-  console.log("longest string after sort :" + longestString);
+  // console.log("longest string after sort :" + longestString);
   // For loop from the back forward to delete any identical strings. By checking from the back forward, any deleted elements will shorten the array, meaning even when elements are deleted, the post decrement iteration will still evaluate every item in the array (no shifting/skipping elements when array is shortened, which would happen from evaluation forward from 0 to array.length)
   for (let i = longestStringLength -1; i > 0; i--){
-   // if current iteration element is exactly the same as the element before it (in front of || ahead of || to the left of), delete the current element
+   // if current iteration element is exactly the same as the element preceding it, delete the current element
    if (longestString[i] === longestString[i - 1]){
     longestString.splice(i, 1);
    }
@@ -89,7 +89,44 @@ function getLongestString(arr){
 }
 /**
  * // Exercise 3.1 Write a function named getShortestString that takes in an array of strings and returns the shortest string in that array.
- *
+ */
+function getShortestString(arr){
+ // Only allow arrays as arguments
+ if (Array.isArray(arr)){
+  // Define variables to hold the length and element of the shortest string
+  let shortestStringLength = 0;
+  let shortestString = [];
+  // For loop to compare each element length to the shortest string before it
+  for (let i = 0; i < arr.length; i++){
+   // If current iteration index string length is less than current shortest string length, reset the holder vars with the current element length and element
+   if (stringLength(arr[i]) < shortestStringLength && stringLength(arr[i]) !== 0) {
+    shortestString = [arr[i]];
+    shortestStringLength = stringLength(arr[i]);
+    // If current iteration index string is as long as current shortest string length, add it to the shortestString array. Only push to the shortestString array if the length is not equal to zero.
+   } else if (stringLength(arr[i]) === shortestStringLength && stringLength(arr[i]) !== 0){
+    shortestString.push(arr[i]);
+   }
+  }
+  // console.log("shortest string before sort :" + shortestString);
+  // Sort the shortestString array to prep for removing duplicate strings
+  shortestString.sort()
+  // console.log("shortest string after sort :" + shortestString);
+  // For loop from the back forward to delete any identical strings. By checking from the back forward, any deleted elements will shorten the array, meaning even when elements are deleted, the post decrement iteration will still evaluate every item in the array (no shifting/skipping elements when array is shortened, which would happen from evaluation forward from 0 to array.length)
+  for (let i = shortestStringLength -1; i > 0; i--){
+   // if current iteration element is exactly the same as the element preceding it, delete the current element
+   if (shortestString[i] === shortestString[i - 1]){
+    shortestString.splice(i, 1);
+   }
+  }
+  if (shortestString.length === 0){
+   return 'No strings of any length within the evaluated array'
+  }
+  return shortestString;
+ }
+ return "Invalid input; please enter an array as an argument"
+}
+
+/**
  * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all the elements of the first array along with all the elements of the second array
  * // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
  *
