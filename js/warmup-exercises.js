@@ -2,18 +2,18 @@
 
 //// 10/3/22
 // re-write the following using a for loop: var i = 20; while (i >= 0) { console.log(i); i--; }
-for (let i = 20; i >= 0; i--) {
-    console.log(i);
-}
+// for (let i = 20; i >= 0; i--) {
+//     console.log(i);
+// }
 
 // Add ‘strawberry’ to the beginning, middle, and end of the array. var fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
-let fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
-
-fruits.push('strawberry');
-fruits.unshift('strawberry');
-fruits.splice(4, 0, 'strawberry');
-
-console.log(fruits);
+// let fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
+//
+// fruits.push('strawberry');
+// fruits.unshift('strawberry');
+// fruits.splice(4, 0, 'strawberry');
+//
+// console.log(fruits);
 
 //// 9/27/22
 // /**
