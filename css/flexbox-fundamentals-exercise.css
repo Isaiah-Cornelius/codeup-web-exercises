@@ -130,7 +130,7 @@ section:nth-of-type(6) {
     background: coral;
     height: 14em;
     /* enter needed declarations here */
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
 }
