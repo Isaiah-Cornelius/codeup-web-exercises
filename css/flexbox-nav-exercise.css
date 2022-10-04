@@ -1,10 +1,46 @@
 * {
     box-sizing: border-box;
 }
-
-.Montserrat {
-    font-family: ;
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #c1c1c1;
+    align-items: first;
 }
-html {
+h6 {
+    font-family: 'Work Sans', sans-serif;
+    padding: 1em;
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-self: center;
+}
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+a:hover{
+    color: blue;
+}
+.nav-section-left {
+    display: flex;
+}
+.nav-section-right {
+    display: flex;
+}
+.logo {
+    margin: auto;
+}
+.Montserrat {
+    font-family: 'Montserrat', sans-serif;
 
+}
+p {
+    font-size: 3em;
+    padding: .2em 0;
+}
+.icon {
+    height: 1em;
+    width: 1em;
 }
