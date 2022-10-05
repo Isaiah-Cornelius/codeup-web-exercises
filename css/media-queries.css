@@ -68,13 +68,16 @@ li {
     width: 100%;
     background-color: var(--grey-background-color);
     list-style: none;
-    padding: 1em;
     margin: .3em 0;
     display: flex;
     justify-content: center;
 }
 li>a {
     color: var(--link-blue-color);
+    padding: 1em;
+    width: 100%;
+    margin: auto;
+    text-align: center;
 }
 nav {
     display: flex;
@@ -114,7 +117,6 @@ ul {
     li {
         width: auto;
         background-color: var(--transparent-color);
-        padding: .5em;
         align-self: baseline;
     }
     .main {

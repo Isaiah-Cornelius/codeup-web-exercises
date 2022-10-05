@@ -62,11 +62,3 @@ body {
 
     flex-basis: 15em;
 }
-#from to{
-
-    flex-basis: 15em;
-}
-select {
-    flex-shrink: 7;
-    flex-basis: 15em;
-}
