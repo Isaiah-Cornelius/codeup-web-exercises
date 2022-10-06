@@ -1,8 +1,19 @@
-* {
-
+:root{
+    --jumbotron-height: 346px;
 }
 .jumbotron {
-    height: 346px;
-    background-image: url("pictures/pizza-background.png");
+    background-image: url("../pictures/pizza-background.png");
+    height: var(--jumbotron-height);
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.jumbotron>div{
+    text-align: center;
+    --bs-text-opacity: .75;
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    padding: .5em;
 }
