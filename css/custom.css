@@ -1,0 +1,8 @@
+* {
+
+}
+.jumbotron {
+    height: 346px;
+    background-image: url("pictures/pizza-background.png");
+    background-size: cover;
+}
