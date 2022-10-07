@@ -43,14 +43,202 @@
         </nav>
     </nav>
     <div class="container-fluid">
-        <div class="jumbotron">
-            <div class="bg-light h1 text-dark bg-opacity-50">Welcome to Pizza World!</div>
+        <div class="d-none d-md-block">
+            <div class="jumbotron ">
+                <div class="bg-light h1 text-dark bg-opacity-50">Welcome to Pizza World!</div>
+            </div>
         </div>
+        <h2>
+            Build your own pizza!
+        </h2>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-size-and-crust-tab" data-bs-toggle="tab" data-bs-target="#nav-size-and-crust" type="button" role="tab" aria-controls="nav-size-and-crust" aria-selected="true"><span class="badge rounded-pill bg-secondary">1</span> Size and Crust</button>
+                <button class="nav-link" id="nav-cheese-and-sauce-tab" data-bs-toggle="tab" data-bs-target="#nav-cheese-and-sauce" type="button" role="tab" aria-controls="nav-cheese-and-sauce" aria-selected="false"><span class="badge rounded-pill bg-secondary">2</span> Cheese and Sauce</button>
+                <button class="nav-link" id="nav-toppings-tab" data-bs-toggle="tab" data-bs-target="#nav-toppings" type="button" role="tab" aria-controls="nav-toppings" aria-selected="false"><span class="badge rounded-pill bg-secondary">3</span> Toppings</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-size-and-crust" role="tabpanel" aria-labelledby="nav-size-and-crust-tab">
+                <div class="card border border-secondary">
+                    <div class="card-header bg-primary text-light ">
+                        Choose Size and Crust
+                    </div>
+                    <div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Hand Tossed
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Garlic seasoned crust with a rich, buttery taste.</li>
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="radio" value="0" aria-label="hand-tossed-pizza-size-10" name="pizza-size">
+                                        Small (10")
+                                </li>
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="radio" value="1" aria-label="hand-tossed-pizza-size-12" name="pizza-size">
+                                        Medium (12")
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Crispy Thin
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Thin enough for optimum crispy to crunchy ratio.</li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="radio" value="2" aria-label="crispy-thin-pizza-size-12" name="pizza-size">
+                                    Medium (12")
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="radio" value="3" aria-label="crispy-thin-pizza-size-14" name="pizza-size">
+                                    Large (14")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer add-flex-row-justify-content-flex-end">
+                        <button type="button" class="btn btn-primary btn-sm align-right">Next Step ></button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-cheese-and-sauce" role="tabpanel" aria-labelledby="nav-cheese-and-sauce-tab">
+                <div class="card border border-secondary">
+                    <div class="card-header bg-primary text-light ">
+                        Choose Cheese and Sauce
+                    </div>
+                    <div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Cheese
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">How Much?</li>
+                                <li class="list-group-item">
+                                    <div class="input-group ">
+                                        <select class="form-select" id="inputGroupSelect01">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Light</option>
+                                            <option value="2">Normal</option>
+                                            <option value="3">Extra</option>
+                                            <option value="4">Double</option>
+                                        </select>
+                                    </div>
 
-        ...
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Sauce
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">What Type?</li>
+                                <li class="list-group-item">
+                                    <div class="input-group ">
+                                        <select class="form-select" id="inputGroupSelect02">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Tomato</option>
+                                            <option value="2">Marinara</option>
+                                            <option value="3">BBQ</option>
+                                            <option value="4">Alfredo</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">How Much?</li>
+                                <li class="list-group-item">
+                                    <div class="input-group ">
+                                        <select class="form-select" id="inputGroupSelect02">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Light</option>
+                                            <option value="2">Normal</option>
+                                            <option value="3">Extra</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer add-flex-row-justify-content-flex-end ">
+                        <div class="bg-primary" id="double-button-div">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-primary">< Previous</button>
+                                <button type="button" class="btn btn-primary">Next ></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-toppings" role="tabpanel" aria-labelledby="nav-toppings-tab">
+                <div class="card border border-secondary">
+                    <div class="card-header bg-primary text-light ">
+                        Choose Toppings
+                    </div>
+                    <div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Choose Meats
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="1" aria-label="choose-meat-beef">
+                                    Beef
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="2" aria-label="choose-meat-ham">
+                                    Ham
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="3" aria-label="choose-meat-philly-steak">
+                                    Philly Steak
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="4" aria-label="choose-meat-bacon">
+                                    Bacon
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card tiny-margin">
+                            <div class="card-header">
+                                Choose Non-Meats
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="1" aria-label="choose-non-meat-green-peppers">
+                                    Green Peppers
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="2" aria-label="choose-non-meat-mushrooms">
+                                    Mushrooms
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="3" aria-label="choose-non-meat-onions">
+                                    Onions
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="4" aria-label="choose-non-meat-jalapeno-peppers">
+                                    Jalapeño Peppers
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer add-flex-row-justify-content-flex-end">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" id="checkout-button">Checkout
+                                <span class="badge bg-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

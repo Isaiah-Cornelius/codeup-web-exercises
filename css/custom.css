@@ -17,3 +17,36 @@
     text-align: center;
     padding: .5em;
 }
+h2 {
+    margin-top: 1em;
+}
+.tiny-margin {
+    margin: 1em;
+}
+.add-flex-row-justify-content-flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+#double-button-div {
+    border-radius: 0.2rem;
+}
+span>svg {
+    height: 1.5em;
+    width: 1.5em;
+    padding: 0;
+    margin: 0;
+}
+.btn .badge {
+    position: relative;
+    top: -5px;
+}
+#checkout-button {
+    padding: 0.4rem 0.5rem 0.1rem 0.7rem;
+
+}
+/*.tiny-grey {*/
+/*    background-color: rgba(0,0,0,.03);*/
+/*}*/
+/*.align-right {*/
+/*    margin-left: auto;*/
+/*}*/
