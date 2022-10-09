@@ -125,7 +125,7 @@ function getShortestString(arr){
  }
  return "Invalid input; please enter an array as an argument"
 }
-
+//green box
 /**
  * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all the elements of the first array along with all the elements of the second array
  * // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
