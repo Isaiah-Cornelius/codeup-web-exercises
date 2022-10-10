@@ -130,12 +130,50 @@ function getShortestString(arr){
 /**
  * // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function should return a single array containing all the elements of the first array along with all the elements of the second array
  * // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
- *
+ */
+function addTwoArrays(x,y){
+ // Only allow arrays as arguments
+ if (Array.isArray(x)){
+  // Only allow arrays as arguments
+  if (Array.isArray(y)){
+   return x.concat(y);
+  }
+  return 'Invalid input; please enter an array as the second argument'
+ }
+ return 'Invalid input; please enter an array as the first argument'
+}
+
+/**
  * // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
  * // Example: getUniqueValues(["a", "b", "a", "b", "c", "c"]) should return ["a", "b", "c"]
- *
+ */
+
+function getUniqueValues(arr){
+ // Only allow arrays as arguments
+ if (Array.isArray(arr)){
+  function onlyUnique(value,index,self){
+   return self.indexOf(value) === index;
+  }
+  return arr.filter(onlyUnique);
+ }
+ return 'Invalid input; please enter an array as the argument'
+}
+
+/**
  * // Exercise 6. Write a function named reverseArray that takes in an array and returns it reversed, but without altering the original array.
- *
+ */
+function reverseArray(arr){
+ // Only allow arrays as arguments
+ if (Array.isArray(arr)){
+  let newArray = [];
+  for (let i = arr.length -1; i >= 0; i--){
+   newArray.push(arr[i]);
+  }
+  return newArray;
+ }
+ return 'Invalid input; please enter an array as the argument'
+}
+/**
  * // Exercise 7. Write a function named getRandomQuote().
  * //   Inside of the function, create an array of strings where each string is a quote or thought you find inspirational
  * //   getRandomQuote should generate a random number between 0 and the array's length minus 1
