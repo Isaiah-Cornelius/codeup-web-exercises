@@ -1,3 +1,20 @@
 * {
     box-sizing: border-box;
 }
+.contact-info>div {
+    padding: 0;
+}
+#hr-1 {
+    opacity: 1;
+    border-top: 6px solid #95aa76;
+}
+#hr-2 {
+    height: 1px;
+    opacity: 1;
+    color: #c7d2b7;
+}
+h5 {
+    color: #4986fb;
+    font-weight: bold;
+    margin-top: 1em;
+}
