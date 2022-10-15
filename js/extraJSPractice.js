@@ -179,7 +179,20 @@ function reverseArray(arr){
  * //   getRandomQuote should generate a random number between 0 and the array's length minus 1
  * //   use the randomly generated number for your index
  * //   return a random quote.
- *
+ */
+
+let randomQuoteArray = ['One in the hand is worth two in the bush...', 'You win some, you lose some...', 'Don\'t let perfection stand in the way of progress...', 'A spoon full of sugar makes the medicine go down...'];
+
+function getRandomQuote(arr) {
+ if (Array.isArray(arr)){
+  let i = Math.floor(Math.random() * arr.length);
+  return arr[i];
+ }
+ return 'Invalid input, please enter an array'
+}
+
+
+/**
  * // Exercise 8. Write a function named getIndexesOf() that takes in two arguments.
  * // The first argument should be a specific numeral or character
  * // The second argument should be any given string
