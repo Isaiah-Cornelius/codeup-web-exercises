@@ -1,7 +1,6 @@
-
 $(function (){
 
-    alert( 'The DOM has finished loading!' );
+    alert($('#li1').html());
 
 
 
@@ -38,6 +37,3 @@ $(function (){
 
 
 });
-window.onload = function() {
-    alert( 'The page has finished loading!' );
-}
