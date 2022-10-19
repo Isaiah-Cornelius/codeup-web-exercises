@@ -1,6 +1,6 @@
 $(function (){
 
-    alert($('#li2').html());
+
 
 
 
