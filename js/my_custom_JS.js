@@ -38,7 +38,6 @@ function createRandomHexValue() {
                 continue;
             default :
                 string += hexValue[i]
-                continue;
         }
     }
     return string;
@@ -47,5 +46,60 @@ function createRandomHexValue() {
 $(h1Elements).click(function (){
     $(this).css('backgroundColor', createRandomHexValue)
 })
+
+
+
+// function changePFontSize11px (){
+//     pElements.css('font-size', '11px');
+//     $(this).off(changePFontSize11px);
+//     $(this).on(dblclick(changePFontSize18px));
+// }
+//
+// function changePFontSize18px (){
+//     pElements.css('font-size', '18px');
+//     $(this).off(changePFontSize18px);
+//     $(this).on(dblclick(changePFontSize25px));
+// }
+//
+// function changePFontSize25px (){
+//     pElements.css('font-size', '25px')
+//     $(this).off(changePFontSize25px);
+//     $(this).on(dblclick(changePFontSize11px));
+// }
+let pElements = $('p');
+
+$(pElements).dblclick(changePFontSize);
+
+let pClickCounter = 0;
+
+function changePFontSize (){
+    pClickCounter += 1;
+    switch (pClickCounter % 3) {
+        case 1 :
+            pElements.css('font-size', '18px');
+            break
+        case 2 :
+            pElements.css('font-size', '25px');
+            break
+        case 0 :
+            pElements.css('font-size', '11px');
+            pClickCounter = 0;
+    }
+    console.log(pClickCounter);
+}
+
+let liElements = $('li');
+
+function liColorRed (){
+    $(this).css('color', 'red')
+}
+
+function liColorBlack (){
+    $(this).css('color', 'black')
+}
+
+$(liElements).hover(liColorRed,liColorBlack);
+
+
 
 });
