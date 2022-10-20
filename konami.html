@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Konami Code</title>
 </head>
 <body>
+<h1>Konami Code</h1>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"><script src="/js/jquery.js"></script>
+<script>
+    "use strict";
+
+    let userKeyCodeLog = [];
+    let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
+
+    $(document).keyup(function(event) {
+        userKeyCodeLog.push(event.keyCode);
+        if (userKeyCodeLog.length > 11) {
+            userKeyCodeLog.shift();
+        }
+        if (userKeyCodeLog.join().includes(konamiCode.join())) {
+            alert('You have added 30 lives!');
+        }
+        console.log(userKeyCodeLog);
+    })
+
+</script>
 </body>
 </html>
