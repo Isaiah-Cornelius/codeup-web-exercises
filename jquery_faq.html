@@ -11,6 +11,9 @@
       color: black;
       text-decoration: none;
     }
+    .highlight {
+      background-color: yellow;
+    }
 
   </style>
 </head>
@@ -70,14 +73,14 @@
 
   $('*').css({
     'text-align': 'center',
-    'margin': '.5em'
+    'padding': '.5em'
   });
   $('dd').css({
     'margin': '0',
   });
   $('dd').addClass('invisible');
   $('dt').on('click', function (){
-    $(this).css('background-color', 'yellow')
+    $(this).toggleClass('highlight')
   })
 
   $('a').on('click', function (){
