@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 FAQs About National Parks</title>
+  <style>
+    .invisible {
+      visibility: hidden;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+<h1>10 FAQs About National Parks</h1>
+
+<dl>
+  <a href="#">
+    <dt>FAQ #1: Do I need an Entrance Reservation?</dt>
+    <dd>No, reservations are not required to visit</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #2</dt>
+    <dd>2</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #3</dt>
+    <dd>3</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #4</dt>
+    <dd>4</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #5</dt>
+    <dd>5</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #6</dt>
+    <dd>6</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #7</dt>
+    <dd>7</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #8</dt>
+    <dd>8</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #9</dt>
+    <dd>9</dd>
+  </a>
+  <a href="#">
+    <dt>FAQ #10</dt>
+    <dd>10</dd>
+  </a>
+</dl>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+
+  'use strict';
+
+  $('*').css({
+    'text-align': 'center',
+    'margin': '.5em'
+  });
+  $('dd').css({
+    'margin': '0',
+  });
+  $('dd').addClass('invisible');
+  $('dt').on('click', function (){
+    $(this).css('background-color', 'yellow')
+  })
+
+  $('a').on('click', function (){
+    $(this).children('dd').toggleClass('invisible');
+  })
+
+
+
+</script>
+</body>
+</html>
