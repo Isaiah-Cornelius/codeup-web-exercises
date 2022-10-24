@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Online Store</title>
 </head>
@@ -20,6 +20,7 @@
   </thead>
   <tbody id="insertProducts"></tbody>
 </table>
+<button type="reset" id="refreshButton">Refresh the list</button>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -27,12 +28,32 @@
   (function() {
     "use strict";
     // TODO: Create an AJAX GET request for the file under data/inventory.json
-    $.ajax("data/inventory.json");
+
 
     // TODO: Take the data from inventory.json and append it to the products table
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
+  let innerHTML = "";
+  let currentInventory = $.ajax("data/inventory.json");
+  function loadCurrentInventory(){
+
+    currentInventory.done(function (data){
+      console.log(data)
+
+      data.forEach(function (tool){
+        innerHTML += `<tr><td>${tool.title}</td><td>${tool.quantity}</td><td>${tool.price}</td><td> ${tool.categories.sort().join(", ")}</td></tr>`
+      })
+      $("#insertProducts").html(innerHTML);
+    });
+  }
+    loadCurrentInventory()
+
+  $("#refreshButton").on('click', function (){
+    innerHTML = "";
+    loadCurrentInventory()
+  })
+
   })();
 </script>
 
