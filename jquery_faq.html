@@ -33,7 +33,7 @@
       position: relative;
       width: 33%;
       border: 20px solid ;
-      border-image: url("/pictures/border_image-circle.png") 30 / 19px round;
+      border-image: url("/pictures/border_image-circle.png") 50 / 2px round;
       z-index: 2;
     }
     span{
@@ -189,22 +189,22 @@
   $('dd').addClass('invisible');
   $('dt').on('click', function (){
     $(this).toggleClass('highlight')
-  })
+  });
 
   $('a').on('click', function (){
     $(this).children('dd').toggleClass('invisible');
-  })
+  });
   $('#button1').on('click', function (){
     $('ul').each(function (index,element){
       $(this).children().last().toggleClass('highlight')
-    })
-  })
+    });
+  });
   $('h3').on('click', function (){
     $(this).next().children().toggleClass('fontWeightBold')
-  })
+  });
   $('li').on('click', function (){
     $(this).parent().children().last().toggleClass('fontColorBlue')
-  })
+  });
 
 
 
