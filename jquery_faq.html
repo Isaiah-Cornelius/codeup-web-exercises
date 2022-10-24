@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>10 FAQs About National Parks</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     .invisible {
       visibility: hidden;
     }
@@ -14,6 +17,42 @@
     .highlight {
       background-color: yellow;
     }
+    .fontWeightBold {
+      font-weight: bold;
+    }
+    .fontColorBlue {
+      color: blue;
+    }
+    .pictureContainer {
+      display: flex;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+    .frame {
+      padding: 0;
+      position: relative;
+      width: 33%;
+      border: 20px solid ;
+      border-image: url("/pictures/border_image-circle.png") 30 / 19px round;
+      z-index: 2;
+    }
+    span{
+      padding: 0;
+    }
+    img {
+      padding: 0;
+      max-width: 100%;
+    }
+    .buttonContainer {
+      display: flex;
+      justify-content: center;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+    .buttonSpan {
+      width: 33%;
+    }
+
 
   </style>
 </head>
@@ -63,13 +102,82 @@
   </a>
 </dl>
 
+<h3 id="national-parks-heading">National Parks</h3>
+<ul id="national-parks">
+  <li>Arches</li>
+  <li>Badlands</li>
+  <li>Carlsbad Caverns</li>
+  <li>Denali</li>
+  <li>Everglades</li>
+</ul>
+<h3>State Parks of Texas</h3>
+<ul id="state-parks-texas">
+  <li>Abilene</li>
+  <li>Big Bend</li>
+  <li>Choke Canyon</li>
+  <li>Davis Mountains</li>
+  <li>Enchanted Rock</li>
+</ul>
+<h3>Some other national park</h3>
+<ul id="state-parks-other">
+  <li>A place</li>
+  <li>Bring a jacket</li>
+  <li>Can't sit here</li>
+  <li>Don't lick the windows</li>
+  <li>Enjoy the trip</li>
+</ul>
+<button type="button" id="button1">Click me to change the last li background color!</button>
 
+<div class="pictureContainer">
+  <div class="frame">
+    <span id="positionA">
+      <img src="pictures/tree.jpg" alt="Tree">
+    </span>
+  </div>
+  <div class="frame">
+    <span id="positionB">
+      <img src="pictures/sky.jpg" alt="Sky">
+    </span>
+  </div>
+  <div class="frame">
+    <span id="positionC">
+      <img src="pictures/sunflower.jpg" alt="Sunflower">
+    </span>
+  </div>
+</div>
+<div class="buttonContainer">
+  <span class="buttonSpan"><button type="button" id="button2">Swap</button></span>
+  <span class="buttonSpan"><button type="button" id="button3">Swap</button></span>
+  <span class="buttonSpan"><button type="button" id="button4">Swap</button></span>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
 
   'use strict';
+
+  $(`#button2`).on('click', function (){
+    let current = $('#positionA')[0].innerHTML
+    $('#positionA')[0].innerHTML = $('#positionB')[0].innerHTML
+    $('#positionB')[0].innerHTML = current
+  })
+  $('#button3').on('click', function (){
+    let current = $('#positionB')[0].innerHTML
+    let random = Math.floor(Math.random() * 2)
+    if (random % 2 === 0){
+      $('#positionB')[0].innerHTML = $('#positionA')[0].innerHTML
+      $('#positionA')[0].innerHTML = current
+    } else {
+      $('#positionB')[0].innerHTML = $('#positionC')[0].innerHTML
+      $('#positionC')[0].innerHTML = current
+    }
+  })
+  $('#button4').on('click', function (){
+    let current = $('#positionC')[0].innerHTML
+    $('#positionC')[0].innerHTML = $('#positionB')[0].innerHTML
+    $('#positionB')[0].innerHTML = current
+  })
 
   $('*').css({
     'text-align': 'center',
@@ -85,6 +193,17 @@
 
   $('a').on('click', function (){
     $(this).children('dd').toggleClass('invisible');
+  })
+  $('#button1').on('click', function (){
+    $('ul').each(function (index,element){
+      $(this).children().last().toggleClass('highlight')
+    })
+  })
+  $('h3').on('click', function (){
+    $(this).next().children().toggleClass('fontWeightBold')
+  })
+  $('li').on('click', function (){
+    $(this).parent().children().last().toggleClass('fontColorBlue')
   })
 
 
