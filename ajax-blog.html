@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+    <style>
+        body {
+            margin-left: 2em;
+            margin-right: 2em;
+        }
+        p{
+            margin: 0;
+            font-size: 1em;
+        }
+        h1 {
+            font-size: 4em;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin: 2em 2em 0 0em;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Ajax Blog</h1>
+  <div id="posts"></div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script>
+        (function (){
+            "use strict";
+            let blog = $.ajax("data/blog.json");
+            let html = ''
+            blog.done(function (data){
+                console.log(data)
+                for (let i = data.length -1; i >= 0 ; i--){
+                    html += `<h2>${data[i].title}</h2><br> <p>${data[i].content}</p><br><p>Categories : ${data[i].categories.sort().join(", ")}</p><br><p>Posted : ${data[i].date}</p>`
+                }
+                // data.forEach(function (post){
+                //     html += `<h2>${post.title}</h2><br> <p>${post.content}</p><br><p>Categories : ${post.categories.sort().join(", ")}</p><br><p>Posted : ${post.date}}</p>`
+                // }
+
+                $("#posts").html(html);
+            })
+
+
+        })();
+    </script>
+</body>
+</html>
