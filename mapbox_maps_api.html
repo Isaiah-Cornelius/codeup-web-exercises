@@ -24,10 +24,10 @@
   mapboxgl.accessToken = key;
   let map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/streets-v11',
     //TODO: Set your own zoom and center
     zoom: 7,
-    center: [-105.09327976010164, 40.37668443168361]
+    center: [-105.09328041668543, 40.37655781140014]
 
   });
 
@@ -36,11 +36,11 @@
 
   //TODO: Add your own marker to where we've aligned your map so far
   let marker = new mapboxgl.Marker()
-          .setLngLat([-105.09327976010164, 40.37668443168361])
+          .setLngLat([-105.09328041668543, 40.37655781140014])
           .addTo(map)
 
   let popup = new mapboxgl.Popup()
-          .setLngLat([-105.09327976010164, 40.37668443168361])
+          .setLngLat([-105.09328041668543, 40.37655781140014])
           .setHTML ("<p>My House</p>")
           .addTo(map)
 
