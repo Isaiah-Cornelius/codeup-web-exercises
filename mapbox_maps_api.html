@@ -7,14 +7,36 @@
   <style>
     #map{
       width: 100%;
-      height: 99vh;
+      height: 80vh;
     }
   </style>
 </head>
 <body>
 
 <div id="map"></div>
+<form>
+  <label for="zoomInput">Choose a zoom value</label>
+  <select name="zoomInput" id="zoomInput">
+    <option value="5">5</option>
+    <option value="10" selected>10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+  </select>
+  <label for="newMapLat">New Map Center Latitude</label>
+  <input type="text" id="newMapLat" name="newMapLat">
+  <label for="newMapLng">New Map Center Longitude</label>
+  <input type="text" id="newMapLng">
+  <input type="submit" value="Submit" id="filterSubmitButton">
+</form>
 
+
+
+<!--<button id="zoom5">Zoom to 5</button>-->
+<!--<button id="zoom15">Zoom to 15</button>-->
+<!--<button id="zoom20">Zoom to 20</button>-->
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
@@ -26,43 +48,80 @@
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     //TODO: Set your own zoom and center
-    zoom: 7,
+    zoom: 10,
     center: [-105.09328041668543, 40.37655781140014]
 
   });
 
   //TODO: Set zoom on your own with a map.setZoom call in your console
-
-
   //TODO: Add your own marker to where we've aligned your map so far
-  let marker = new mapboxgl.Marker()
-          .setLngLat([-105.09328041668543, 40.37655781140014])
-          .addTo(map)
-
-  let popup = new mapboxgl.Popup()
-          .setLngLat([-105.09328041668543, 40.37655781140014])
-          .setHTML ("<p>My House</p>")
-          .addTo(map)
-
+  const lovelandGardenCenter = {
+    address: [-105.07413533090129, 40.37437172794031],
+    innerHTML: '<p>Loveland Garden Center</p>',
+    details: '<p>Greenhouse</p>'
+  }
   //TODO: Use the geocode method to add a 2nd marker and popup to your map, then center your map over it
-let marker2Address = {
-    address : [-105.06657617325685, 39.85588653510157],
-  popupHTML : ("<p>GParents House</p>")
-}
+  const gulleysGreenhouse = {
+      address : [-105.09730756287045, 40.50161244266389],
+    innerHTML : '<p>Gulleys Greenhouse</p>',
+    details : '<p>Greenhouse</p>'
+
+  }
+  const theWindsorGardener = {
+    address: [-104.9359065136702, 40.48024958628614],
+    innerHTML : '<p>The Windsor Gardener</p>',
+    details : '<p>Greenhouse</p>'
+
+  }
   function placeMarkerAndPopup(info, token, map) {
     geocode(info.address, token).then(function(coordinates) {
-      let popup = new mapboxgl.Popup()
-              .setHTML(info.popupHTML);
-      let marker2 = new mapboxgl.Marker()
+      new mapboxgl.Marker()
               .setLngLat(coordinates)
+              .setPopup(new mapboxgl.Popup().setHTML(info.innerHTML + info.details))
               .addTo(map)
-              .setPopup(popup);
-      popup.addTo(map);
     });
   }
-
-  placeMarkerAndPopup(marker2Address, key, map);
+  placeMarkerAndPopup(lovelandGardenCenter, key, map);
+  placeMarkerAndPopup(gulleysGreenhouse, key, map);
+  placeMarkerAndPopup(theWindsorGardener, key, map);
   //TODO: Try a reverse geocode yourself and see what address you get back for your coordinates - remember to send up a {lng: <lng>, lat: <lat>} object
+  const myLngLat = {
+    lng : "-105.09328041668543",
+    lat : "40.37655781140014"
+  }
+
+  reverseGeocode(myLngLat, key).then(function (result){
+    console.log(result);
+
+  })
+  $("#zoom5").on('click', function (e){
+    e.preventDefault();
+    map.transform._zoom = 5;
+    })
+  $("#zoom15").on('click', function (e){
+    e.preventDefault();
+    map.transform._zoom = 15;
+    })
+  $("#zoom20").on('click', function (e){
+    e.preventDefault();
+    map.transform._zoom = 20;
+  })
+  map.addControl(new mapboxgl.NavigationControl());
+
+  $("#filterSubmitButton").on('click', function (e) {
+    e.preventDefault();
+    console.log($("#zoomInput")[0].value);
+    map.transform._zoom = $("#zoomInput")[0].value;
+
+    // if the inputs are numbers for new map lat and lng, redefine map coordinates to those values
+    if ((isNaN(Number($("#newMapLng")[0].value)) === false) && (isNaN(Number($("#newMapLat")[0].value)) === false)){
+      let newLat = parseFloat($("#newMapLat")[0].value);
+      let newLng = parseFloat($("#newMapLng")[0].value);
+      map.transform._center.lng = newLng;
+      map.transform._center.lat = newLat
+    }
+  });
+
 </script>
 
 </body></html>
