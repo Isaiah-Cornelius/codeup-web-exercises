@@ -2,27 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather Map</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
+        .container {
+            max-width: 100%;
+        }
+        #fiveDayForcastDiv {
+            width: 100%;
+            height: 20vh;
+        }
+        h1 {
+            padding: 5px 5px 0px;
+        }
+        .latlon {
+            text-align: center;
+        }
         #map{
             width: 100%;
             height: 80vh;
         }
-        .mapboxgl-popup-content {
-            text-wrap: none;
-            padding: 5px 5px 0px;
+        .mapboxgl-popup-content{
+            width: fit-content;
+            background: rgba(255, 255, 255, .3);
+
+            border: 2px solid white;
+            text-shadow: -3px 3px 3px #fff,
+                          3px 3px 3px #fff,
+                          3px -3px 3px #fff,
+                         -3px -3px 3px #fff;
+
+
         }
         .mapboxgl-popup-content>p, h4 {
             margin: 2px;
         }
+
     </style>
 
 </head>
 <body>
+<h1 id="pageHeaderH1">Weather Map</h1>
+<div class="container">
+    <div class="row" id="fiveDayForcastDiv">
+        <div class="col" id="day1"></div>
+        <div class="col" id="day2"></div>
+        <div class="col" id="day3"></div>
+        <div class="col" id="day4"></div>
+        <div class="col" id="day5"></div>
+    </div>
+    <div id='map'></div>
+</div>
 
-
-<div id='map'></div>
 <!-- Scripts in div below-->
 <div>
 <!--    Link to hidden API keys-->
@@ -31,6 +64,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <!--    Link to mapbox-->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+<!--    Link to bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--    Create the map-->
     <script>
         mapboxgl.accessToken = mapBoxKey2;
@@ -48,7 +83,7 @@
 </div>
 <script>
     "use strict";
-    let popupID = 0
+
     let currentLat = 40.3969214
     let currentLon = -105.074746
 
@@ -57,43 +92,44 @@
     // let currentLon = -106.327508
 
     // API Calls
+
+
     function addCurrentWeatherPopup(){
         let location = "";
-        $.ajax(`http://api.openweathermap.org/geo/1.0/reverse?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey2}`).done(function (data){
-            console.log(data)
+        $.ajax(`http://api.openweathermap.org/geo/1.0/reverse?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}`).done(function (data){
+            // console.log(data)
             if (data[0].state !== 'undefined'){
                 location = data[0].state
             } else {
                 location = [0].country
             }
             location = data[0].state;
-            console.log(location);
+            // console.log(location);
 
             // $(`#h1SpanID${popupID}`).html(`${data[0].state}`)
-            $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey2}&units=imperial`).done(function (data){
-                console.log(data);
+            $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}&units=imperial`).done(function (data){
+                // console.log(data);
 
                 new mapboxgl.Marker()
                     .setLngLat(data.coord)
                     .setPopup(new mapboxgl.Popup().setHTML(
-                        `<h1>${data.name}, ${location}</h1><hr>
+                        `<h1 class="text-nowrap">${data.name}, ${location}</h1>
+                         <p class="latlon"><small>Latitude : ${data.coord.lat}   /    Longitude : ${data.coord.lon}</small></p>
                      <h4>${data.weather[0].description}</h4>
                      <p>Temperature : ${data.main.temp}&#8457</p>
                      <p>Feels Like : ${data.main.feels_like}&#8457</p>
                      <p>Humidity : ${data.main.humidity}%</p>
-                     <p>Wind Speed : ${data.wind.speed}mph</p>
-                     <p>Popup ID #${popupID}</p>`))
+                     <p>Wind Speed : ${data.wind.speed}mph</p>`))
                     .togglePopup()
                     .addTo(map);
 
-
-                popupID += 1;
-
-        })
-
+            })
         })
     }
     addCurrentWeatherPopup();
+    // $.ajax(`api.openweathermap.org/data/2.5/forecast?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}&units=imperial`).done(function (data){
+    //     console.log(data)
+    // })
 
 
 
