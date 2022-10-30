@@ -12,13 +12,19 @@
         }
         #fiveDayForcastDiv {
             width: 100%;
-            height: 20vh;
+        }
+        form {
+            float: right;
+            margin: 5px;
         }
         h1 {
             padding: 5px 5px 0px;
         }
         .latlon {
             text-align: center;
+        }
+        #locationHeader{
+            clear: both;
         }
         #map{
             width: 100%;
@@ -33,25 +39,29 @@
                           3px 3px 3px #fff,
                           3px -3px 3px #fff,
                          -3px -3px 3px #fff;
-
-
         }
         .mapboxgl-popup-content>p, h4 {
             margin: 2px;
         }
-
     </style>
-
 </head>
+
 <body>
-<h1 id="pageHeaderH1">Weather Map</h1>
+<h4 class="d-inline">Weather Map</h4>
+<form class="d-inline">
+    <label for="geosearch">Search:</label>
+    <input type="text" id="geosearch" name="geosearch" placeholder="City, ST">
+    <input type="submit" id="geosearchSubmit" value="submit">
+</form>
+<span class="d-inline" id="locationHeader"></span>
+
 <div class="container">
-    <div class="row" id="fiveDayForcastDiv">
-        <div class="col" id="day1"></div>
-        <div class="col" id="day2"></div>
-        <div class="col" id="day3"></div>
-        <div class="col" id="day4"></div>
-        <div class="col" id="day5"></div>
+    <div class="row" class="fiveDayForcastDiv">
+        <div class="col" id="day1a"></div>
+        <div class="col" id="day2a"></div>
+        <div class="col" id="day3a"></div>
+        <div class="col" id="day4a"></div>
+        <div class="col" id="day5a"></div>
     </div>
     <div id='map'></div>
 </div>
@@ -79,79 +89,558 @@
         map.on('style.load', () => {
             map.setFog({}); // Set the default atmosphere style
         });
+
     </script>
 </div>
 <script>
     "use strict";
 
-    let currentLat = 40.3969214
-    let currentLon = -105.074746
+    let currentLat = 40.3969214;
+    let currentLon = -105.074746;
+    let currentLocation = "";
 
-    // check for proper assignment of 'location' in 'if' statement in reverse geocoding get request in addCurrentWeatherPopup(): working properly
+    // check for proper assignment of 'currentLocation' in 'if' statement in reverse geocoding get request in addCurrentWeatherPopup(): working properly
     // let currentLat = 53.835125
     // let currentLon = -106.327508
 
     // API Calls
 
-
-    function addCurrentWeatherPopup(){
-        let location = "";
-        $.ajax(`http://api.openweathermap.org/geo/1.0/reverse?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}`).done(function (data){
+    // Get the coordinate state (if applicable) and country and reassign the data to currentLocation variable
+    function getLocationInfo(){
+        $.ajax(`http://api.openweathermap.org/geo/1.0/reverse?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey2}`).done(function (data){
             // console.log(data)
             if (data[0].state !== 'undefined'){
-                location = data[0].state
+                currentLocation = data[0].state
             } else {
-                location = [0].country
+                currentLocation = data[0].country
             }
-            location = data[0].state;
-            // console.log(location);
-
-            // $(`#h1SpanID${popupID}`).html(`${data[0].state}`)
-            $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}&units=imperial`).done(function (data){
-                // console.log(data);
-
-                new mapboxgl.Marker()
-                    .setLngLat(data.coord)
-                    .setPopup(new mapboxgl.Popup().setHTML(
-                        `<h1 class="text-nowrap">${data.name}, ${location}</h1>
-                         <p class="latlon"><small>Latitude : ${data.coord.lat}   /    Longitude : ${data.coord.lon}</small></p>
-                     <h4>${data.weather[0].description}</h4>
-                     <p>Temperature : ${data.main.temp}&#8457</p>
-                     <p>Feels Like : ${data.main.feels_like}&#8457</p>
-                     <p>Humidity : ${data.main.humidity}%</p>
-                     <p>Wind Speed : ${data.wind.speed}mph</p>`))
-                    .togglePopup()
-                    .addTo(map);
-
-            })
+            // console.log(currentLocation);
+            addCurrentWeatherPopup();
         })
     }
-    addCurrentWeatherPopup();
-    // $.ajax(`api.openweathermap.org/data/2.5/forecast?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey3}&units=imperial`).done(function (data){
-    //     console.log(data)
-    // })
+
+    $("#geosearchSubmit").on('click', function(e) {
+        e.preventDefault();
+        // console.log($("#geosearch")[0].value)
+        let search = $("#geosearch")[0].value
+        $.ajax(`http://api.openweathermap.org/geo/1.0/direct?q="${search}"&appid=${openWeatherKey2}`).done(function (data){
+            console.log(data);
+            currentLat = data[0].lat;
+            currentLon = data[0].lon;
+            getLocationInfo();
+            map.flyTo({
+                center: [currentLon, currentLat],
+                zoom: 9,
+                duration: 4000,
+                essential: true
+            })
+        })
+    })
+    const marker = new mapboxgl.Marker({
+        draggable: true
+    })
+    // Get the current weather for the coordinates in imperial units and add a popup and marker with applicable data
+    function addCurrentWeatherPopup(){
+        $.ajax(`https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey2}&units=imperial`).done(function (data){
+            // console.log(data);
+            $("#locationHeader").html(`<h1 class="text-nowrap">${data.name}, ${currentLocation}</h1>`)
+            marker
+                .setLngLat(data.coord)
+                .setPopup(new mapboxgl.Popup()
+                    .setHTML(
+                    `<h1 class="text-nowrap">${data.name}, ${currentLocation}</h1>
+                     <p class="latlon"><small>Latitude : ${data.coord.lat}   /    Longitude : ${data.coord.lon}</small></p>
+                 <h4>${data.weather[0].description}</h4>
+                 <p>Temperature : ${data.main.temp}&#8457</p>
+                 <p>Feels Like : ${data.main.feels_like}&#8457</p>
+                 <p>Humidity : ${data.main.humidity}%</p>
+                 <p>Wind Speed : ${data.wind.speed}mph</p>`))
+                .addTo(map);
+            marker.togglePopup();
+            get5DayForecast()
+        })
+    }
+    function onDragEnd(){
+        let lngLat = marker.getLngLat();
+        currentLon = lngLat.lng;
+        currentLat = lngLat.lat;
+        getLocationInfo()
+        map.flyTo({
+            center: [currentLon, currentLat],
+            zoom: 9,
+            duration: 4000,
+            essential: true
+        })
+    }
+
+    marker.on('dragend', onDragEnd);
 
 
 
+    // Get the 5-day 3-hour forecast weather for the coordinates in imperial units and add the applicable data to the forecast divs
+    function get5DayForecast() {
+        $.ajax(`https://api.openweathermap.org/data/2.5/forecast?lat=${currentLat}&lon=${currentLon}&appid=${openWeatherKey2}&units=imperial`).done(function (data) {
+            // console.log(data)
+
+            // Make Date Variables and loop through the forecast array BTF
+            let date1 = "";
+            let date2 = "";
+            let date3 = "";
+            let date4 = "";
+            let date5 = "";
+            // Assign dates to date vars; check if the date var has a value and (if applicable) whether date var is different from the one preceding it
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if (date5 === "") {
+                    date5 = data.list[i].dt_txt.substring(0, 10)
+                } else if ((date5 !== "") && (date5 > data.list[i].dt_txt.substring(0, 10)) && (date4 === "")) {
+                    date4 = data.list[i].dt_txt.substring(0, 10)
+                } else if ((date4 !== "") && (date4 > data.list[i].dt_txt.substring(0, 10)) && (date3 === "")) {
+                    date3 = data.list[i].dt_txt.substring(0, 10)
+                } else if ((date3 !== "") && (date3 > data.list[i].dt_txt.substring(0, 10)) && (date2 === "")) {
+                    date2 = data.list[i].dt_txt.substring(0, 10)
+                } else if ((date2 !== "") && (date2 > data.list[i].dt_txt.substring(0, 10)) && (date1 === "")) {
+                    date1 = data.list[i].dt_txt.substring(0, 10)
+                }
+                // console.log(date5)
+                // console.log(date4)
+                // console.log(date3)
+                // console.log(date2)
+                // console.log(date1)
+            }
+
+            // Make MinTemp Variables and loop through the forecast array BTF
+            // MinTemp vars assigned an initial value of way too hot so that any loop values are guaranteed to be different
+            let date1TempMin = 250;
+            let date2TempMin = 250;
+            let date3TempMin = 250;
+            let date4TempMin = 250;
+            let date5TempMin = 250;
+
+            // Loop through the forecast array; check for the day and reassign min temp var if lower than existing value
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if ((date5TempMin === 250) && (date5 === data.list[i].dt_txt.substring(0, 10))) {
+                    date5TempMin = data.list[i].main.temp_min
+                } else if ((data.list[i].main.temp_min < date5TempMin) && (date5 === data.list[i].dt_txt.substring(0, 10))) {
+                    date5TempMin = data.list[i].main.temp_min
+                } else if ((date4TempMin === 250) && (date4 === data.list[i].dt_txt.substring(0, 10))) {
+                    date4TempMin = data.list[i].main.temp_min
+                } else if ((data.list[i].main.temp_min < date4TempMin) && (date4 === data.list[i].dt_txt.substring(0, 10))) {
+                    date4TempMin = data.list[i].main.temp_min
+                } else if ((date3TempMin === 250) && (date3 === data.list[i].dt_txt.substring(0, 10))) {
+                    date3TempMin = data.list[i].main.temp_min
+                } else if ((data.list[i].main.temp_min < date3TempMin) && (date3 === data.list[i].dt_txt.substring(0, 10))) {
+                    date3TempMin = data.list[i].main.temp_min
+                } else if ((date2TempMin === 250) && (date2 === data.list[i].dt_txt.substring(0, 10))) {
+                    date2TempMin = data.list[i].main.temp_min
+                } else if ((data.list[i].main.temp_min < date2TempMin) && (date2 === data.list[i].dt_txt.substring(0, 10))) {
+                    date2TempMin = data.list[i].main.temp_min
+                } else if ((date1TempMin === 250) && (date1 === data.list[i].dt_txt.substring(0, 10))) {
+                    date1TempMin = data.list[i].main.temp_min
+                } else if ((data.list[i].main.temp_min < date1TempMin) && (date1 === data.list[i].dt_txt.substring(0, 10))) {
+                    date1TempMin = data.list[i].main.temp_min
+                }
+            }
+
+            // Make MaxTemp Variables and loop through the forecast array BTF
+            let date1TempMax = 250;
+            let date2TempMax = 250;
+            let date3TempMax = 250;
+            let date4TempMax = 250;
+            let date5TempMax = 250;
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if ((date5TempMax === 250) && (date5 === data.list[i].dt_txt.substring(0, 10))) {
+                    date5TempMax = data.list[i].main.temp_max
+                } else if ((data.list[i].main.temp_max > date5TempMax) && (date5 === data.list[i].dt_txt.substring(0, 10))) {
+                    date5TempMax = data.list[i].main.temp_max
+                } else if ((date4TempMax === 250) && (date4 === data.list[i].dt_txt.substring(0, 10))) {
+                    date4TempMax = data.list[i].main.temp_max
+                } else if ((data.list[i].main.temp_max > date4TempMax) && (date4 === data.list[i].dt_txt.substring(0, 10))) {
+                    date4TempMax = data.list[i].main.temp_max
+                } else if ((date3TempMax === 250) && (date3 === data.list[i].dt_txt.substring(0, 10))) {
+                    date3TempMax = data.list[i].main.temp_max
+                } else if ((data.list[i].main.temp_max > date3TempMax) && (date3 === data.list[i].dt_txt.substring(0, 10))) {
+                    date3TempMax = data.list[i].main.temp_max
+                } else if ((date2TempMax === 250) && (date2 === data.list[i].dt_txt.substring(0, 10))) {
+                    date2TempMax = data.list[i].main.temp_max
+                } else if ((data.list[i].main.temp_max > date2TempMax) && (date2 === data.list[i].dt_txt.substring(0, 10))) {
+                    date2TempMax = data.list[i].main.temp_max
+                } else if ((date1TempMax === 250) && (date1 === data.list[i].dt_txt.substring(0, 10))) {
+                    date1TempMax = data.list[i].main.temp_max
+                } else if ((data.list[i].main.temp_max > date1TempMax) && (date1 === data.list[i].dt_txt.substring(0, 10))) {
+                    date1TempMax = data.list[i].main.temp_max
+                }
+            }
+
+            // Make functions to round a number and get averages from an array
+            function getAverage(arr) {
+                let arrSum = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    arrSum += arr[i]
+                }
+                return (arrSum / arr.length)
+            }
+
+            function roundAverage(num) {
+                return Math.round(num)
+            }
+
+            // Make Humidity Array and Humidity Average Variables and loop through the forecast array BTF
+            let date1HumidityArray = [];
+            let date2HumidityArray = [];
+            let date3HumidityArray = [];
+            let date4HumidityArray = [];
+            let date5HumidityArray = [];
+            for (let i = data.list.length -1; i >= 0; i--){
+             if (date5 === data.list[i].dt_txt.substring(0,10)){
+                 date5HumidityArray.push(data.list[i].main.humidity)
+             } else
+             if (date4 === data.list[i].dt_txt.substring(0,10)){
+                 date4HumidityArray.push(data.list[i].main.humidity)
+             } else
+             if (date3 === data.list[i].dt_txt.substring(0,10)){
+                 date3HumidityArray.push(data.list[i].main.humidity)
+             } else
+             if (date2 === data.list[i].dt_txt.substring(0,10)){
+                 date2HumidityArray.push(data.list[i].main.humidity)
+             } else
+             if (date1 === data.list[i].dt_txt.substring(0,10)){
+                 date1HumidityArray.push(data.list[i].main.humidity)
+             }
+            }
+            let date5AverageHumidity = roundAverage(getAverage(date5HumidityArray));
+            let date4AverageHumidity = roundAverage(getAverage(date4HumidityArray));
+            let date3AverageHumidity = roundAverage(getAverage(date3HumidityArray));
+            let date2AverageHumidity = roundAverage(getAverage(date2HumidityArray));
+            let date1AverageHumidity = roundAverage(getAverage(date1HumidityArray));
+            // console.log(`Date 5 Humidity Array: ${date5HumidityArray}`)
+            // console.log(`Date 5 Average Humidity: ${date5AverageHumidity}`)
+            // console.log(`Date 4 Humidity Array: ${date4HumidityArray}`)
+            // console.log(`Date 4 Average Humidity: ${date4AverageHumidity}`)
+            // console.log(`Date 3 Humidity Array: ${date3HumidityArray}`)
+            // console.log(`Date 3 Average Humidity: ${date3AverageHumidity}`)
+            // console.log(`Date 2 Humidity Array: ${date2HumidityArray}`)
+            // console.log(`Date 2 Average Humidity: ${date2AverageHumidity}`)
+            // console.log(`Date 1 Humidity Array: ${date1HumidityArray}`)
+            // console.log(`Date 1 Average Humidity: ${date1AverageHumidity}`)
+
+            // Make Temperature Array and Temperature Average Variables and loop through the forecast array BTF
+            let date1TempArray = [];
+            let date2TempArray = [];
+            let date3TempArray = [];
+            let date4TempArray = [];
+            let date5TempArray = [];
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if (date5 === data.list[i].dt_txt.substring(0, 10)) {
+                    date5TempArray.push(data.list[i].main.temp)
+                } else if (date4 === data.list[i].dt_txt.substring(0, 10)) {
+                    date4TempArray.push(data.list[i].main.temp)
+                } else if (date3 === data.list[i].dt_txt.substring(0, 10)) {
+                    date3TempArray.push(data.list[i].main.temp)
+                } else if (date2 === data.list[i].dt_txt.substring(0, 10)) {
+                    date2TempArray.push(data.list[i].main.temp)
+                } else if (date1 === data.list[i].dt_txt.substring(0, 10)) {
+                    date1TempArray.push(data.list[i].main.temp)
+                }
+            }
+            let date5AverageTemp = roundAverage(getAverage(date5TempArray));
+            let date4AverageTemp = roundAverage(getAverage(date4TempArray));
+            let date3AverageTemp = roundAverage(getAverage(date3TempArray));
+            let date2AverageTemp = roundAverage(getAverage(date2TempArray));
+            let date1AverageTemp = roundAverage(getAverage(date1TempArray));
+            // console.log(`Date 5 Temp Array: ${date5TempArray}`)
+            // console.log(`Date 5 Average Temp: ${date5AverageTemp}`)
+            // console.log(`Date 4 Temp Array: ${date4TempArray}`)
+            // console.log(`Date 4 Average Temp: ${date4AverageTemp}`)
+            // console.log(`Date 3 Temp Array: ${date3TempArray}`)
+            // console.log(`Date 3 Average Temp: ${date3AverageTemp}`)
+            // console.log(`Date 2 Temp Array: ${date2TempArray}`)
+            // console.log(`Date 2 Average Temp: ${date2AverageTemp}`)
+            // console.log(`Date 1 Temp Array: ${date1TempArray}`)
+            // console.log(`Date 1 Average Temp: ${date1AverageTemp}`)
+
+            // Make FeelsLike Array and FeelsLike Average Variables and loop through the forecast array BTF
+            let date1FeelsLikeArray = [];
+            let date2FeelsLikeArray = [];
+            let date3FeelsLikeArray = [];
+            let date4FeelsLikeArray = [];
+            let date5FeelsLikeArray = [];
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if (date5 === data.list[i].dt_txt.substring(0, 10)) {
+                    date5FeelsLikeArray.push(data.list[i].main.feels_like)
+                } else if (date4 === data.list[i].dt_txt.substring(0, 10)) {
+                    date4FeelsLikeArray.push(data.list[i].main.feels_like)
+                } else if (date3 === data.list[i].dt_txt.substring(0, 10)) {
+                    date3FeelsLikeArray.push(data.list[i].main.feels_like)
+                } else if (date2 === data.list[i].dt_txt.substring(0, 10)) {
+                    date2FeelsLikeArray.push(data.list[i].main.feels_like)
+                } else if (date1 === data.list[i].dt_txt.substring(0, 10)) {
+                    date1FeelsLikeArray.push(data.list[i].main.feels_like)
+                }
+            }
+            let date5AverageFeelsLike = roundAverage(getAverage(date5FeelsLikeArray));
+            let date4AverageFeelsLike = roundAverage(getAverage(date4FeelsLikeArray));
+            let date3AverageFeelsLike = roundAverage(getAverage(date3FeelsLikeArray));
+            let date2AverageFeelsLike = roundAverage(getAverage(date2FeelsLikeArray));
+            let date1AverageFeelsLike = roundAverage(getAverage(date1FeelsLikeArray));
+            // console.log(`Date 5 FeelsLike Array: ${date5FeelsLikeArray}`)
+            // console.log(`Date 5 Average FeelsLike: ${date5AverageFeelsLike}`)
+            // console.log(`Date 4 FeelsLike Array: ${date4FeelsLikeArray}`)
+            // console.log(`Date 4 Average FeelsLike: ${date4AverageFeelsLike}`)
+            // console.log(`Date 3 FeelsLike Array: ${date3FeelsLikeArray}`)
+            // console.log(`Date 3 Average FeelsLike: ${date3AverageFeelsLike}`)
+            // console.log(`Date 2 FeelsLike Array: ${date2FeelsLikeArray}`)
+            // console.log(`Date 2 Average FeelsLike: ${date2AverageFeelsLike}`)
+            // console.log(`Date 1 FeelsLike Array: ${date1FeelsLikeArray}`)
+            // console.log(`Date 1 Average FeelsLike: ${date1AverageFeelsLike}`)
+
+            // Make WindSpeed Array and WindSpeed Average Variables and loop through the forecast array BTF
+            let date1WindSpeedArray = [];
+            let date2WindSpeedArray = [];
+            let date3WindSpeedArray = [];
+            let date4WindSpeedArray = [];
+            let date5WindSpeedArray = [];
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if (date5 === data.list[i].dt_txt.substring(0, 10)) {
+                    date5WindSpeedArray.push(data.list[i].wind.speed)
+                } else if (date4 === data.list[i].dt_txt.substring(0, 10)) {
+                    date4WindSpeedArray.push(data.list[i].wind.speed)
+                } else if (date3 === data.list[i].dt_txt.substring(0, 10)) {
+                    date3WindSpeedArray.push(data.list[i].wind.speed)
+                } else if (date2 === data.list[i].dt_txt.substring(0, 10)) {
+                    date2WindSpeedArray.push(data.list[i].wind.speed)
+                } else if (date1 === data.list[i].dt_txt.substring(0, 10)) {
+                    date1WindSpeedArray.push(data.list[i].wind.speed)
+                }
+            }
+            let date5AverageWindSpeed = roundAverage(getAverage(date5WindSpeedArray));
+            let date4AverageWindSpeed = roundAverage(getAverage(date4WindSpeedArray));
+            let date3AverageWindSpeed = roundAverage(getAverage(date3WindSpeedArray));
+            let date2AverageWindSpeed = roundAverage(getAverage(date2WindSpeedArray));
+            let date1AverageWindSpeed = roundAverage(getAverage(date1WindSpeedArray));
+            // console.log(`Date 5 Wind Speed Array: ${date5WindSpeedArray}`)
+            // console.log(`Date 5 Average Wind Speed: ${date5AverageWindSpeed}`)
+            // console.log(`Date 4 Wind Speed Array: ${date4WindSpeedArray}`)
+            // console.log(`Date 4 Average Wind Speed: ${date4AverageWindSpeed}`)
+            // console.log(`Date 3 Wind Speed Array: ${date3WindSpeedArray}`)
+            // console.log(`Date 3 Average Wind Speed: ${date3AverageWindSpeed}`)
+            // console.log(`Date 2 Wind Speed Array: ${date2WindSpeedArray}`)
+            // console.log(`Date 2 Average Wind Speed: ${date2AverageWindSpeed}`)
+            // console.log(`Date 1 Wind Speed Array: ${date1WindSpeedArray}`)
+            // console.log(`Date 1 Average Wind Speed: ${date1AverageWindSpeed}`)
 
 
-    /**
-     * API CALLS
-     * Direct Geocoding
-     * http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-     * q	required	City name, state code (only for the US) and country code divided by comma. Please use ISO 3166 country codes.
-     * appid	required	Your unique API key (you can always find it on your account page under the "API key" tab)
-     * limit	optional	Number of the locations in the API response (up to 5 results can be returned in the API response)
-     *
-     */
+
+            // Make function to return only unique values from an array
+            function onlyUniqueArrayValues(arr) {
+                let newArr = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr.indexOf(arr[i]) === i) {
+                        newArr.push(arr[i])
+                    }
+                }
+                return newArr
+            }
+
+            // Make Weather Description Array and filter out duplicate values; loop through the forecast array BTF
+            let date1WeatherDescriptionArray = [];
+            let date2WeatherDescriptionArray = [];
+            let date3WeatherDescriptionArray = [];
+            let date4WeatherDescriptionArray = [];
+            let date5WeatherDescriptionArray = [];
+            for (let i = data.list.length - 1; i >= 0; i--) {
+                if (date5 === data.list[i].dt_txt.substring(0, 10)) {
+                    date5WeatherDescriptionArray.push(data.list[i].weather[0].description)
+                } else if (date4 === data.list[i].dt_txt.substring(0, 10)) {
+                    date4WeatherDescriptionArray.push(data.list[i].weather[0].description)
+                } else if (date3 === data.list[i].dt_txt.substring(0, 10)) {
+                    date3WeatherDescriptionArray.push(data.list[i].weather[0].description)
+                } else if (date2 === data.list[i].dt_txt.substring(0, 10)) {
+                    date2WeatherDescriptionArray.push(data.list[i].weather[0].description)
+                } else if (date1 === data.list[i].dt_txt.substring(0, 10)) {
+                    date1WeatherDescriptionArray.push(data.list[i].weather[0].description)
+                }
+            }
+            let date5WeatherDescription = onlyUniqueArrayValues(date5WeatherDescriptionArray);
+            let date4WeatherDescription = onlyUniqueArrayValues(date4WeatherDescriptionArray);
+            let date3WeatherDescription = onlyUniqueArrayValues(date3WeatherDescriptionArray);
+            let date2WeatherDescription = onlyUniqueArrayValues(date2WeatherDescriptionArray);
+            let date1WeatherDescription = onlyUniqueArrayValues(date1WeatherDescriptionArray);
+            // console.log(`date5WeatherDescriptionArray: ${date5WeatherDescriptionArray}`)
+            // console.log(`date5WeatherDescription: ${date5WeatherDescription}`)
+            // console.log(`date4WeatherDescriptionArray: ${date4WeatherDescriptionArray}`)
+            // console.log(`date4WeatherDescription: ${date4WeatherDescription}`)
+            // console.log(`date3WeatherDescriptionArray: ${date3WeatherDescriptionArray}`)
+            // console.log(`date3WeatherDescription: ${date3WeatherDescription}`)
+            // console.log(`date2WeatherDescriptionArray: ${date2WeatherDescriptionArray}`)
+            // console.log(`date2WeatherDescription: ${date2WeatherDescription}`)
+            // console.log(`date1WeatherDescriptionArray: ${date1WeatherDescriptionArray}`)
+            // console.log(`date1WeatherDescription: ${date1WeatherDescription}`)
+
+            // Make longestArr function to set longestArrayVar to be equal to the longest date#WeatherDescription.length
+            let longestArrayVar = 0;
+            function longestArr(arr){
+                for (let i = 1; i < 6; i++){
+                    switch (i){
+                        case 1:
+                            longestArrayVar = date1WeatherDescription.length;
+                            break;
+                        case 2:
+                            if(longestArrayVar < date2WeatherDescription.length){
+                                longestArrayVar = date2WeatherDescription.length
+                            }
+                            break
+                        case 3:
+                            if(longestArrayVar < date3WeatherDescription.length){
+                                longestArrayVar = date3WeatherDescription.length
+                            }
+                            break
+                        case 4:
+                            if(longestArrayVar < date4WeatherDescription.length){
+                                longestArrayVar = date4WeatherDescription.length
+                            }
+                            break
+                        case 5:
+                            if(longestArrayVar < date5WeatherDescription.length){
+                                longestArrayVar = date5WeatherDescription.length
+                            }
+                    }
+                }
+            }
+            longestArr();
+
+            // loop through the date#weatherDescription vars and make them all the equal in length to longestArrVar
+            function sameLengthAsLongestArrayVar(arr){
+                for (let i = 1; i < 6; i++){
+                    let diff = 0
+                    switch (i){
+                        case 1:
+                            diff = (longestArrayVar - date1WeatherDescription.length)
+                            if (diff > 0){
+                                diff += 1
+                                for (diff; diff > 0; diff--){
+                                    date1WeatherDescription.push(" ")
+                                }
+                            }
+                            break
+                        case 2:
+                            diff = (longestArrayVar - date2WeatherDescription.length)
+                            if (diff > 0){
+                                diff += 1
+                                for (diff; diff > 0; diff--){
+                                    date2WeatherDescription.push(" ")
+                                }
+                            }
+                            break
+                        case 3:
+                            diff = (longestArrayVar - date3WeatherDescription.length)
+                            if (diff > 0){
+                                diff += 1
+                                for (diff; diff > 0; diff--){
+                                    date3WeatherDescription.push(" ")
+                                }
+                            }
+                            break
+                        case 4:
+                            diff = (longestArrayVar - date4WeatherDescription.length)
+                            if (diff > 0){
+                                diff += 1
+                                for (diff; diff > 0; diff--){
+                                    date4WeatherDescription.push(" ")
+                                }
+                            }
+                            break
+                        case 5:
+                            diff = (longestArrayVar - date5WeatherDescription.length)
+                            if (diff > 0){
+                                diff += 1
+                                for (diff; diff > 0; diff--){
+                                    date5WeatherDescription.push(" ")
+                                }
+                            }
+                    }
+                }
+            }
+            sameLengthAsLongestArrayVar();
+
+            // reassign the value of date#WeatherDescription vars with join
+            date5WeatherDescription = date5WeatherDescription.join("<br>")
+            date4WeatherDescription = date4WeatherDescription.join("<br>")
+            date3WeatherDescription = date3WeatherDescription.join("<br>")
+            date2WeatherDescription = date2WeatherDescription.join("<br>")
+            date1WeatherDescription = date1WeatherDescription.join("<br>")
 
 
 
+            //Display the forecast data in the HTML divs with day# ids
+            for (let i = 1; i < 6; i++) {
+                switch (i) {
+                    case 1:
+                        $("#day1a").html(`
+                            <p class="mb-1 fs-6"><strong>${date1}</strong></p>
+                            <p class="mb-1 fs-6 lh-1 fst-italic">${date1WeatherDescription}</p>
+                            <p class="m-0 fs-6"><strong>High:</strong> ${date1TempMax}&#8457</p>
+                            <p class="m-0 fs-6"><strong>Low:</strong> ${date1TempMin}&#8457</p>
+                            <p class="m-0 fs-6"><strong>Avg Temp:</strong> ${date1AverageTemp}&#8457</p>
+                            <p class="m-0 fs-6"><strong>Feels Like:</strong> ${date1AverageFeelsLike}&#8457</p>
+                            <p class="m-0 fs-6"><strong>Humidity:</strong> ${date1AverageHumidity}%</p>
+                            <p class="mb-1 fs-6"><strong>Wind Speed:</strong> ${date1AverageWindSpeed}mph</p>
+                        `);
+                        break;
+                    case 2:
+                        $("#day2a").html(`
+                                <p class="mb-1 fs-6"><strong>${date2}</strong></p>
+                                <p class="mb-1 fs-6 lh-1 fst-italic">${date2WeatherDescription}</p>
+                                <p class="m-0 fs-6"><strong>High:</strong> ${date2TempMax}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Low:</strong> ${date2TempMin}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Avg Temp:</strong> ${date2AverageTemp}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Feels Like:</strong> ${date2AverageFeelsLike}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Humidity:</strong> ${date2AverageHumidity}%</p>
+                                <p class="mb-1 fs-6"><strong>Wind Speed:</strong> ${date2AverageWindSpeed}mph</p>
+                        `);
+                        break;
+                    case 3:
+                        $("#day3a").html(`
+                                <p class="mb-1 fs-6"><strong>${date3}</strong></p>
+                                <p class="mb-1 fs-6 lh-1 fst-italic">${date3WeatherDescription}</p>
+                                <p class="m-0 fs-6"><strong>High:</strong> ${date3TempMax}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Low:</strong> ${date3TempMin}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Avg Temp:</strong> ${date3AverageTemp}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Feels Like:</strong> ${date3AverageFeelsLike}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Humidity:</strong> ${date3AverageHumidity}%</p>
+                                <p class="mb-1 fs-6"><strong>Wind Speed:</strong> ${date3AverageWindSpeed}mph</p>
+                        `);
+                        break;
+                    case 4:
+                        $("#day4a").html(`
+                                <p class="mb-1 fs-6"><strong>${date4}</strong></p>
+                                <p class="mb-1 fs-6 lh-1 fst-italic">${date4WeatherDescription}</p>
+                                <p class="m-0 fs-6"><strong>High:</strong> ${date4TempMax}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Low:</strong> ${date4TempMin}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Avg Temp:</strong> ${date4AverageTemp}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Feels Like:</strong> ${date4AverageFeelsLike}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Humidity:</strong> ${date4AverageHumidity}%</p>
+                                <p class="mb-1 fs-6"><strong>Wind Speed:</strong> ${date4AverageWindSpeed}mph</p>
+                        `);
+                        break;
+                    case 5:
+                        $("#day5a").html(`
+                                <p class="mb-1 fs-6"><strong>${date5}</strong></p>
+                                <p class="mb-1 fs-6 lh-1 fst-italic">${date5WeatherDescription}</p>
+                                <p class="m-0 fs-6"><strong>High:</strong> ${date5TempMax}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Low:</strong> ${date5TempMin}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Avg Temp:</strong> ${date5AverageTemp}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Feels Like:</strong> ${date5AverageFeelsLike}&#8457</p>
+                                <p class="m-0 fs-6"><strong>Humidity:</strong> ${date5AverageHumidity}%</p>
+                                <p class="mb-1 fs-6"><strong>Wind Speed:</strong> ${date5AverageWindSpeed}mph</p>
+                        `);
+                        break;
+                }
+            }
+        })
+    }
 
-
-    //
-    // })
-
+    // Make the API calls...
+    getLocationInfo();
 
 
 
