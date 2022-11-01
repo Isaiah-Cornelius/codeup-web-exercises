@@ -72,3 +72,12 @@ let usersNames = users.reduce(function (accum, user){
 },"")
 
 // Use .reduce to get the unique list of languages from the list of users.
+let uniqueUserLanguages = users.reduce(function (accum, user){
+    for(let language of user.languages){
+        if (accum.indexOf(language) == -1){
+            accum.push(language)
+        }
+    }
+    accum.sort();
+    return accum
+}, [])
